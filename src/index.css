@@ -1,13 +1,97 @@
-body {
+/* GENERAL --------------------------------------------------------- */
+* {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  padding: 0;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+body {
+  margin: 0;
+  font-family: "Helvetica", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background: gray;
+  color: peachpuff;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.timerContainer,
+.imageContainer,
+.instructions,
+.word,
+.allWordsList,
+.results {
+  border: 1px solid peachpuff;
+  border-radius: 25px;
+  margin: 20px;
+}
+
+/* HEADER --------------------------------------------------------- */
+.header {
+  margin: 30px;
+  text-transform: uppercase;
+}
+
+/* TIMER --------------------------------------------------------- */
+.timerContainer {
+  padding: 40px 80px;
+}
+
+/* IMAGE --------------------------------------------------------- */
+.imageContainer {
+  padding: 20px 20px;
+}
+
+.randomImage {
+  border-radius: 25px;
+}
+
+/* INSTRUCTIONS --------------------------------------------------------- */
+.instructions {
+  padding: 40px 140px;
+}
+
+/* WORD --------------------------------------------------------- */
+.word {
+  padding: 40px 80px;
+}
+
+/* ALL WORDS LIST --------------------------------------------------------- */
+.allWordsList {
+  padding: 80px 140px;
+}
+
+/* RESULTS --------------------------------------------------------- */
+.results {
+  padding: 80px 140px;
+}
+
+/* FOOTER --------------------------------------------------------- */
+.footer {
+  font-size: 14px;
+  color: #ffdab9;
+  text-align: center;
+  position: static;
+  bottom: 0;
+  height: 2.5rem;
+  width: 75%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin: 60px 0 0 0;
+  padding: 20px;
+}
+
+.footer i {
+  transition: 2s ease;
+}
+
+.footer i:hover {
+  transform: rotate(360deg);
 }
