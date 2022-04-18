@@ -26,16 +26,10 @@ function App() {
     <div className="container">
       <Header />
       <Timer />
-      <Image
-        currentImageObj={currentImageObj}
-        setCurrentImageObj={setCurrentImageObj}
-      />
+      <Image currentImageObj={currentImageObj} />
       <Instructions />
-      <Word
-        currentImageObj={currentImageObj}
-        setCurrentImageObj={setCurrentImageObj}
-      />
-      <AllWordsList />
+      <Word currentImageObj={currentImageObj} />
+      <AllWordsList currentImageObj={currentImageObj} />
       <Results />
       <Footer />
     </div>
