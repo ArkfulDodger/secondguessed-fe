@@ -41,7 +41,7 @@ function AllWordsList({
   ));
   return (
     <div className="allWordsListContainer">
-      <span>Guessed Words:</span>
+      <span>Submitted Words:</span>
       <ul className="allWordsList">{wordsToDisplay}</ul>
     </div>
   );

@@ -76,7 +76,13 @@ function App() {
           userIP={userIP}
         />
       )}
-      {phase === "results" && <Results />}
+      {phase === "results" && (
+        <Results
+          userIP={userIP}
+          currentImageObj={currentImageObj}
+          currentGuessObj={currentGuessObj}
+        />
+      )}
       <Footer />
     </div>
   );
