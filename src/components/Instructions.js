@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-function Instructions(props) {
+function Instructions({ phase }) {
   // if it's time to guess: "Please write the word that you think best describes the image above"
 
   // if it's time to choose a guess: "Please choose the best-fitting word from the options below"
@@ -10,7 +10,11 @@ function Instructions(props) {
   return (
     <div className="instructions">
       <span>
-        Please write the word that you think best describes the image above
+        {phase === "submit" &&
+          "Please write the word that you think best describes the image above"}
+        {phase === "vote" &&
+          "Choose the word you think will receive the SECOND-most votes"}
+        {phase === "results" && "Results:"}
       </span>
     </div>
   );

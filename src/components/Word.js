@@ -3,6 +3,7 @@ import React, { useState } from "react";
 function Word({ currentImageObj, wordToSubmit, setWordToSubmit, userIP }) {
   // state: submitted word this round & stop displaying input
   const [submittedThisRound, setSubmittedThisRound] = useState(false);
+  const [currentSubmission, setCurrentSubmission] = useState("");
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -28,6 +29,7 @@ function Word({ currentImageObj, wordToSubmit, setWordToSubmit, userIP }) {
       .then((data) => {
         console.log("POST data: ", data);
         setSubmittedThisRound(true);
+        setCurrentSubmission(data.text);
       })
       .catch((error) => console.log(error.message));
 
@@ -39,16 +41,18 @@ function Word({ currentImageObj, wordToSubmit, setWordToSubmit, userIP }) {
 
   return (
     <div className="word">
-      <span>word</span>
-
-      <form onSubmit={(e) => handleSubmit(e)}>
-        <input
-          className={inputClassName}
-          name="word"
-          value={wordToSubmit}
-          onChange={(e) => setWordToSubmit(e.target.value)}
-        ></input>
-      </form>
+      {submittedThisRound ? (
+        <span>{currentSubmission}</span>
+      ) : (
+        <form onSubmit={(e) => handleSubmit(e)}>
+          <input
+            className={inputClassName}
+            name="word"
+            value={wordToSubmit}
+            onChange={(e) => setWordToSubmit(e.target.value)}
+          ></input>
+        </form>
+      )}
     </div>
   );
 }

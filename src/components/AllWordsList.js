@@ -2,7 +2,13 @@ import React, { useState, useEffect } from "react";
 import WordToGuess from "./WordToGuess";
 import { v4 as uuidv4 } from "uuid";
 
-function AllWordsList({ currentImageObj, wordToSubmit }) {
+function AllWordsList({
+  currentImageObj,
+  wordToSubmit,
+  currentGuessObj,
+  setCurrentGuessObj,
+  userIP,
+}) {
   const [wordsList, setWordsList] = useState([]);
   // GET words - eventually filter for only words from current game
 
@@ -14,7 +20,14 @@ function AllWordsList({ currentImageObj, wordToSubmit }) {
   }, [wordToSubmit]);
 
   const wordsToDisplay = wordsList.map((word) => (
-    <WordToGuess word={word} key={uuidv4()} />
+    <WordToGuess
+      word={word}
+      key={uuidv4()}
+      currentGuessObj={currentGuessObj}
+      setCurrentGuessObj={setCurrentGuessObj}
+      currentImageObj={currentImageObj}
+      userIP={userIP}
+    />
   ));
   return (
     <div className="allWordsListContainer">
