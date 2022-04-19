@@ -24,7 +24,7 @@ body {
 .imageContainer,
 .instructions,
 .word,
-.allWordsList,
+.allWordsListContainer,
 .results {
   border: 1px solid peachpuff;
   border-radius: 25px;
@@ -66,8 +66,17 @@ input.hidden {
 }
 
 /* ALL WORDS LIST --------------------------------------------------------- */
-.allWordsList {
+.allWordsListContainer {
   padding: 80px 140px;
+}
+
+.allWordsListContainer span {
+  text-decoration: underline;
+}
+
+.allWordsList {
+  margin: 10px;
+  list-style: none;
 }
 
 /* RESULTS --------------------------------------------------------- */

@@ -22,14 +22,24 @@ function App() {
     image_url: "https://picsum.photos/seed/1/200/300",
   });
 
+  // word & allWordsList both need to access this state:
+  const [wordToSubmit, setWordToSubmit] = useState("");
+
   return (
     <div className="container">
       <Header />
       <Timer />
       <Image currentImageObj={currentImageObj} />
       <Instructions />
-      <Word currentImageObj={currentImageObj} />
-      <AllWordsList currentImageObj={currentImageObj} />
+      <Word
+        currentImageObj={currentImageObj}
+        wordToSubmit={wordToSubmit}
+        setWordToSubmit={setWordToSubmit}
+      />
+      <AllWordsList
+        currentImageObj={currentImageObj}
+        wordToSubmit={wordToSubmit}
+      />
       <Results />
       <Footer />
     </div>

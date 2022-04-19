@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 
-function Word({ currentImageObj }) {
-  const [wordToGuess, setWordToGuess] = useState("");
+function Word({ currentImageObj, wordToSubmit, setWordToSubmit }) {
   const [userIP, setUserIP] = useState("000.000.0.0");
 
   // state: submitted word this round & stop displaying input
@@ -11,7 +10,7 @@ function Word({ currentImageObj }) {
     e.preventDefault();
 
     const testWordObj = {
-      text: wordToGuess,
+      text: wordToSubmit,
       image_id: currentImageObj.id,
       user_ip: userIP,
     };
@@ -35,7 +34,7 @@ function Word({ currentImageObj }) {
       .catch((error) => console.log(error.message));
 
     // reset the form
-    setWordToGuess("");
+    setWordToSubmit("");
   }
 
   const inputClassName = submittedThisRound === false ? "" : "hidden";
@@ -48,8 +47,8 @@ function Word({ currentImageObj }) {
         <input
           className={inputClassName}
           name="word"
-          value={wordToGuess}
-          onChange={(e) => setWordToGuess(e.target.value)}
+          value={wordToSubmit}
+          onChange={(e) => setWordToSubmit(e.target.value)}
         ></input>
       </form>
     </div>
