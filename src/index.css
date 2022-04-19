@@ -81,6 +81,10 @@ input.hidden {
   list-style: none;
 }
 
+.selectedWord {
+  font-weight: bold;
+}
+
 /* RESULTS --------------------------------------------------------- */
 .results {
   padding: 80px 140px;

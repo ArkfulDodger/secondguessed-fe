@@ -19,6 +19,16 @@ function AllWordsList({
       .catch((error) => console.log(error.message));
   }, [wordToSubmit]);
 
+  useEffect(() => {
+    fetch(`http://localhost:9292/current-guess/${currentImageObj.id}/${userIP}`)
+      .then((res) => res.json())
+      .then((returnedGuess) => {
+        console.log(returnedGuess);
+        setCurrentGuessObj(returnedGuess);
+      })
+      .catch((error) => console.log(error.message));
+  }, []);
+
   const wordsToDisplay = wordsList.map((word) => (
     <WordToGuess
       word={word}
