@@ -32,15 +32,21 @@ function Results({ userIP, currentImageObj, currentGuessObj }) {
       .catch((error) => console.log(error.message));
   }, []);
 
-  const winLossText = winningWordsIds.includes(currentGuessObj.word_id)
-    ? "Congratulations! You guessed correctly"
-    : "You lose, buster";
+  let winLossText = "";
+
+  if (currentGuessObj) {
+    winLossText = winningWordsIds.includes(currentGuessObj.word_id)
+      ? "Congratulations! You guessed correctly"
+      : "You lose, buster";
+  }
 
   const displayList = finalWordsList.map((word) => {
     return (
       <li key={word.id}>
         {word.text} - {word.guessCount}{" "}
-        {word.id === currentGuessObj.word_id && "⭐️ this was yours!"}
+        {currentGuessObj
+          ? word.id === currentGuessObj.word_id && "⭐️ this was yours!"
+          : ""}
       </li>
     );
   });

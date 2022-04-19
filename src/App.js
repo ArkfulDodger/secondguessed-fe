@@ -20,18 +20,24 @@ function App() {
   // first: manually write code to change phases
   // next: set up to change on timer
 
-  const [currentImageObj, setCurrentImageObj] = useState({
-    id: 1,
-    image_url:
-      "https://d2u3kfwd92fzu7.cloudfront.net/asset/cms/Art_Basel_Hong_Kong_2021_Partners-3-1.jpg",
-    alt: "abstract artwork in bright reds and oranges, resembling lava flow or oils",
-  });
+  const [currentImageObj, setCurrentImageObj] = useState({});
 
   // word & allWordsList both need to access this state:
   const [wordToSubmit, setWordToSubmit] = useState("");
 
   // the user's current guess
   const [currentGuessObj, setCurrentGuessObj] = useState({});
+
+  // get desired first image on app load
+  useEffect(() => {
+    fetch(`http://localhost:9292/images/first`)
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        setCurrentImageObj(data);
+      })
+      .catch((error) => console.log(error.message));
+  }, []);
 
   function progressPhase() {
     switch (phase) {
@@ -43,11 +49,29 @@ function App() {
         break;
       case "results":
         setPhase("submit");
+        setupNextImage();
+        startNewRound();
         break;
       default:
         console.error("invalid phase name, fix that shit");
         break;
     }
+  }
+
+  function setupNextImage() {
+    // get new image from api
+    // add to table
+    console.log("added new image to table here");
+  }
+
+  function startNewRound() {
+    fetch(`http://localhost:9292/images/next/${currentImageObj.id}`)
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        setCurrentImageObj(data);
+      })
+      .catch((error) => console.log(error.message));
   }
 
   return (

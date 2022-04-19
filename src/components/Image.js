@@ -7,7 +7,7 @@ function Image({ currentImageObj }) {
   return (
     <div className="imageContainer">
       <img
-        src={currentImageObj.image_url}
+        src={currentImageObj.url}
         className="randomImage"
         alt={currentImageObj.alt}
       ></img>
