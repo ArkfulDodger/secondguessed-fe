@@ -1,8 +1,6 @@
 import React, { useState } from "react";
 
-function Word({ currentImageObj, wordToSubmit, setWordToSubmit }) {
-  const [userIP, setUserIP] = useState("000.000.0.0");
-
+function Word({ currentImageObj, wordToSubmit, setWordToSubmit, userIP }) {
   // state: submitted word this round & stop displaying input
   const [submittedThisRound, setSubmittedThisRound] = useState(false);
 

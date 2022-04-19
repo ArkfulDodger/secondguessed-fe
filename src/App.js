@@ -11,6 +11,8 @@ import Results from "./Results";
 import Footer from "./components/Footer";
 
 function App() {
+  const [userIP, setUserIP] = useState("000.000.0.0");
+
   const [phase, setPhase] = useState("submit");
   // phases: submit, vote, results
   // conditional checks which phase & displays correct component
@@ -19,7 +21,9 @@ function App() {
 
   const [currentImageObj, setCurrentImageObj] = useState({
     id: 1,
-    image_url: "https://picsum.photos/seed/1/200/300",
+    image_url:
+      "https://d2u3kfwd92fzu7.cloudfront.net/asset/cms/Art_Basel_Hong_Kong_2021_Partners-3-1.jpg",
+    alt: "abstract artwork in bright reds and oranges, resembling lava flow or oils",
   });
 
   // word & allWordsList both need to access this state:
@@ -35,6 +39,7 @@ function App() {
         currentImageObj={currentImageObj}
         wordToSubmit={wordToSubmit}
         setWordToSubmit={setWordToSubmit}
+        userIP={userIP}
       />
       <AllWordsList
         currentImageObj={currentImageObj}

@@ -9,7 +9,7 @@ function Image({ currentImageObj }) {
       <img
         src={currentImageObj.image_url}
         className="randomImage"
-        alt="randomly generated"
+        alt={currentImageObj.alt}
       ></img>
     </div>
   );
