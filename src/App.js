@@ -11,6 +11,9 @@ import Results from "./components/Results";
 import Footer from "./components/Footer";
 import { v4 as uuid } from "uuid";
 
+const phaseDuration = 20 * 1000;
+const phaseCount = 3;
+
 function App() {
   const [phase, setPhase] = useState("submit");
   // phases: submit, vote, results
@@ -38,14 +41,64 @@ function App() {
       createNewUser();
     }
 
-    fetch(`http://localhost:9292/images/first`)
+    fetch(`http://localhost:9292/images/current`)
       .then((res) => res.json())
-      .then((data) => {
-        // console.log(data);
-        setCurrentImageObj(data);
+      .then((returnImgObj) => {
+        // console.group("Img Fetch");
+        // console.log(returnImgObj);
+
+        if (isInPlay(returnImgObj)) {
+          // console.log("is in play");
+          setCurrentImageObj(returnImgObj);
+          setPhaseByImg(returnImgObj);
+        } else {
+          // console.log("is NOT in play");
+          setupNextImage().then((newImg) => {
+            setCurrentImageObj(newImg);
+            setPhaseByImg(newImg);
+          });
+        }
+        // console.groupEnd();
       })
       .catch((error) => console.log(error.message));
   }, []);
+
+  function isInPlay(imgObj) {
+    // console.log("Date.now: ", Date.now());
+    // console.log("ImgStart: ", imgObj.start_time);
+    // console.log("Now - Start", (Date.now() - imgObj.start_time) / 1000);
+    // console.log("Endtime: ", phaseCount * phaseDuration + imgObj.start_time);
+    // console.log(
+    //   "End - Now: ",
+    //   (phaseCount * phaseDuration + imgObj.start_time - Date.now()) / 1000
+    // );
+
+    return (
+      imgObj != {} &&
+      Date.now() < phaseCount * phaseDuration + imgObj.start_time
+    );
+  }
+
+  function setPhaseByImg(imgObj) {
+    const elapsedTime = Date.now() - imgObj.start_time;
+    const phaseInt = Math.floor(elapsedTime / phaseDuration);
+
+    switch (phaseInt) {
+      case 0:
+        setPhase("submit");
+        break;
+      case 1:
+        setPhase("vote");
+        break;
+      case 2:
+        setPhase("results");
+        break;
+
+      default:
+        alert("could not set phase for image...");
+        break;
+    }
+  }
 
   // retrieve user from db based on ID in local storage
   function getCurrentUser() {
@@ -132,11 +185,11 @@ function App() {
       body: JSON.stringify({
         url: img_url,
         alt: "randomly generated image",
-        start_time: new Date(),
+        start_time: Math.floor(Date.now() / 1000) * 1000, // time in milliseconds, rounded to previous second mark
       }),
     })
       .then((res) => res.json())
-      .then((data) => data)
+      .then((returnedImgObj) => returnedImgObj)
       .catch((error) => console.log(error.message));
     // add to table
     console.log("added new image to table here");
@@ -154,7 +207,26 @@ function App() {
           currentUserObj={currentUserObj}
           setCurrentUserObj={setCurrentUserObj}
         />
-
+        <button onClick={progressPhase} className="temp-grid-item">
+          Current Phase: <b>{phase}</b>; <em>Click to progress</em>
+        </button>
+        {!!currentImageObj.start_time && (
+          <Timer
+            progressPhase={progressPhase}
+            setPhase={setPhase}
+            currentImageObj={currentImageObj}
+            phaseDuration={phaseDuration}
+          />
+        )}
+        <Image currentImageObj={currentImageObj} />
+        <Instructions phase={phase} />
+        {phase === "submit" && (
+          <Word
+            currentImageObj={currentImageObj}
+            wordToSubmit={wordToSubmit}
+            setWordToSubmit={setWordToSubmit}
+          />
+        )}
         <div className="phaseBtnContainer">
           <button onClick={progressPhase} className="temp-grid-item">
             click to progress phase

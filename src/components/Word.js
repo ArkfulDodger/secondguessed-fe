@@ -26,7 +26,7 @@ function Word({
     const testWordObj = {
       text: wordToSubmit,
       image_id: currentImageObj.id,
-      session_id: currentUserObj.session_id,
+      user_id: currentUserObj.id,
     };
 
     // add word to list of words IN DATABASE

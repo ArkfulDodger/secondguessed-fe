@@ -21,7 +21,7 @@ function AllWordsList({
 
   useEffect(() => {
     fetch(
-      `http://localhost:9292/current-guess/${currentImageObj.id}/${currentUserObj.session_id}`
+      `http://localhost:9292/current-guess/${currentImageObj.id}/${currentUserObj.id}`
     )
       .then((res) => res.json())
       .then((returnedGuess) => {
