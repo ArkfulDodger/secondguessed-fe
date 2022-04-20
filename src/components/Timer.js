@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Countdown from "./Countdown";
 
-function Timer({ progressPhase }) {
+function Timer({ progressPhase, phase }) {
   const [dateTime, setDateTime] = useState(new Date().toLocaleString());
   const [secondsPast, setSecondsPast] = useState("");
 
@@ -26,9 +26,13 @@ function Timer({ progressPhase }) {
     <div className="timerContainer grid-item2">
       <span>{dateTime}</span>
 
-      <span>{secondsPast}</span>
+      {/* <span>{secondsPast}</span> */}
 
-      <Countdown secondsPast={secondsPast} progressPhase={progressPhase} />
+      <Countdown
+        secondsPast={secondsPast}
+        progressPhase={progressPhase}
+        phase={phase}
+      />
     </div>
   );
 }

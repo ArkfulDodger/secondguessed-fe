@@ -13,6 +13,16 @@ function Word({
   function handleSubmit(e) {
     e.preventDefault();
 
+    // validate that input is not empty
+    // if (currentSubmission === "") {
+    //   alert("please enter a word or phrase");
+    // } else {
+    //   const testWordObj = {
+    //     text: wordToSubmit,
+    //     image_id: currentImageObj.id,
+    //     session_id: currentUserObj.session_id,
+    //   };
+
     const testWordObj = {
       text: wordToSubmit,
       image_id: currentImageObj.id,
@@ -40,23 +50,34 @@ function Word({
 
     // reset the form
     setWordToSubmit("");
+    // }
   }
 
   const inputClassName = submittedThisRound === false ? "" : "hidden";
 
   return (
-    <div className="word grid-item10">
-      {submittedThisRound ? (
-        <span>{currentSubmission}</span>
-      ) : (
+    <div className="wordContainer grid-item10">
+      {submittedThisRound === false ? (
         <form onSubmit={(e) => handleSubmit(e)}>
           <input
             className={inputClassName}
             name="word"
             value={wordToSubmit}
             onChange={(e) => setWordToSubmit(e.target.value)}
+            placeholder="enter your word or phrase"
           ></input>
         </form>
+      ) : (
+        <div className="submittedWord">
+          <span>You submitted:</span>
+          <span>{currentSubmission}</span>
+
+          {/* button to edit submission - brings back form */}
+          {/* will this allow new submission to write over previous? */}
+          <button onClick={() => setSubmittedThisRound(false)}>
+            edit submission
+          </button>
+        </div>
       )}
     </div>
   );

@@ -37,24 +37,24 @@ function Results({ currentUserObj, currentImageObj, currentGuessObj }) {
   if (currentGuessObj) {
     winLossText = winningWordsIds.includes(currentGuessObj.word_id)
       ? "Congratulations! You guessed correctly"
-      : "You lose, buster";
+      : "You lose!";
   }
+
+  const yourWord = "⭐️ this was yours!";
 
   const displayList = finalWordsList.map((word) => {
     return (
       <li key={word.id}>
         {word.text} - {word.guessCount}{" "}
-        {currentGuessObj
-          ? word.id === currentGuessObj.word_id && "⭐️ this was yours!"
-          : ""}
+        {currentGuessObj ? word.id === currentGuessObj.word_id && yourWord : ""}
       </li>
     );
   });
 
   return (
-    <div className="results grid-item10">
-      <h2>{winLossText}</h2>
-      <ol>{displayList}</ol>
+    <div className="resultsContainer grid-item10">
+      <h2 className="winLossText">{winLossText}</h2>
+      <ol className="resultsList">{displayList}</ol>
     </div>
   );
 }

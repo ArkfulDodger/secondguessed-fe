@@ -11,7 +11,7 @@ function Instructions({ phase }) {
     <div className="instructions grid-item4">
       <span>
         {phase === "submit" &&
-          "Write the word that best describes the image above"}
+          "Write a word or phrase that describes the image"}
         {phase === "vote" &&
           "Choose the word you think will receive the SECOND-most votes"}
         {phase === "results" && "Results:"}

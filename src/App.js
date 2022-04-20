@@ -1,6 +1,7 @@
 import "./App.css";
 import react, { useState, useEffect } from "react";
 import Header from "./components/Header";
+import Username from "./components/Username";
 import AllWordsList from "./components/AllWordsList";
 import Image from "./components/Image";
 import Instructions from "./components/Instructions";
@@ -120,7 +121,7 @@ function App() {
   function setupNextImage() {
     // get new image from api
     const img_seed = uuid();
-    const img_url = `https://picsum.photos/seed/${img_seed}/200/300`;
+    const img_url = `https://picsum.photos/seed/${img_seed}/700/500`;
 
     return fetch(`http://localhost:9292/images`, {
       method: "POST",
@@ -146,40 +147,48 @@ function App() {
   }
 
   return (
-    <div className="container">
-      <Header />
+    <div className="pageContainer">
+      <div className="contentWrap">
+        <Header />
+        <Username
+          currentUserObj={currentUserObj}
+          setCurrentUserObj={setCurrentUserObj}
+        />
 
-      <button onClick={progressPhase} className="temp-grid-item">
-        Current Phase: <b>{phase}</b>; <em>Click to progress</em>
-      </button>
+        <div className="phaseBtnContainer">
+          <button onClick={progressPhase} className="temp-grid-item">
+            click to progress phase
+          </button>
+        </div>
 
-      <Timer progressPhase={progressPhase} />
-      <Image currentImageObj={currentImageObj} />
-      <Instructions phase={phase} />
-      {phase === "submit" && (
-        <Word
-          currentImageObj={currentImageObj}
-          wordToSubmit={wordToSubmit}
-          setWordToSubmit={setWordToSubmit}
-          currentUserObj={currentUserObj}
-        />
-      )}
-      {phase === "vote" && (
-        <AllWordsList
-          currentImageObj={currentImageObj}
-          wordToSubmit={wordToSubmit}
-          currentGuessObj={currentGuessObj}
-          setCurrentGuessObj={setCurrentGuessObj}
-          currentUserObj={currentUserObj}
-        />
-      )}
-      {phase === "results" && (
-        <Results
-          currentUserObj={currentUserObj}
-          currentImageObj={currentImageObj}
-          currentGuessObj={currentGuessObj}
-        />
-      )}
+        <Timer progressPhase={progressPhase} phase={phase} />
+        <Image currentImageObj={currentImageObj} />
+        <Instructions phase={phase} />
+        {phase === "submit" && (
+          <Word
+            currentImageObj={currentImageObj}
+            wordToSubmit={wordToSubmit}
+            setWordToSubmit={setWordToSubmit}
+            currentUserObj={currentUserObj}
+          />
+        )}
+        {phase === "vote" && (
+          <AllWordsList
+            currentImageObj={currentImageObj}
+            wordToSubmit={wordToSubmit}
+            currentGuessObj={currentGuessObj}
+            setCurrentGuessObj={setCurrentGuessObj}
+            currentUserObj={currentUserObj}
+          />
+        )}
+        {phase === "results" && (
+          <Results
+            currentUserObj={currentUserObj}
+            currentImageObj={currentImageObj}
+            currentGuessObj={currentGuessObj}
+          />
+        )}
+      </div>
       <Footer />
     </div>
   );

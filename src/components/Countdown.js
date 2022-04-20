@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 
-function Countdown({ secondsPast, progressPhase }) {
+function Countdown({ secondsPast, progressPhase, phase }) {
   // need to know which phase on page load & initialize countDown to secondsLeftInRound
   const roundDuration = 30;
   const secondsLeftInRound = roundDuration - (secondsPast % roundDuration);
@@ -15,7 +15,7 @@ function Countdown({ secondsPast, progressPhase }) {
     if (secondsPast === "00" || secondsPast === "30") {
       console.log("secondsPast: ", secondsPast);
 
-      progressPhase();
+      //   progressPhase();
       setRunTimer(true);
 
       let timerId;
@@ -38,8 +38,14 @@ function Countdown({ secondsPast, progressPhase }) {
 
   return (
     <div className="countdownContainer">
+      <h2>Current Phase </h2>
+      <h3>{phase}</h3>
       <div>
-        Time remaining in phase: {minutes}:{seconds}
+        Time remaining in phase:{" "}
+        <b>
+          {" "}
+          {minutes}:{seconds}{" "}
+        </b>
       </div>
     </div>
   );
