@@ -36,25 +36,46 @@ function Results({ currentUserObj, currentImageObj, currentGuessObj }) {
 
   if (currentGuessObj) {
     winLossText = winningWordsIds.includes(currentGuessObj.word_id)
-      ? "Congratulations! You guessed correctly"
+      ? "You win!"
       : "You lose!";
   }
 
-  const yourWord = "⭐️ this was yours!";
+  const yourWord = "⭐️";
 
-  const displayList = finalWordsList.map((word) => {
+  const displayList = finalWordsList.map((word, i) => {
     return (
-      <li key={word.id}>
-        {word.text} - {word.guessCount}{" "}
-        {currentGuessObj ? word.id === currentGuessObj.word_id && yourWord : ""}
-      </li>
+      // <li key={word.id}>
+      //   {word.text} - {word.guessCount}{" "}
+      //   {currentGuessObj ? word.id === currentGuessObj.word_id && yourWord : ""}
+      // </li>
+
+      <tr key={i}>
+        <td>
+          {word.text} - {word.guessCount}
+        </td>
+        <td>
+          {currentGuessObj
+            ? word.id === currentGuessObj.word_id && yourWord
+            : ""}
+        </td>
+      </tr>
     );
   });
 
   return (
     <div className="resultsContainer grid-item10">
       <h2 className="winLossText">{winLossText}</h2>
-      <ol className="resultsList">{displayList}</ol>
+      {/* <ol className="resultsList">{displayList}</ol> */}
+
+      <table>
+        <tbody id="resultsTable">
+          <tr>
+            <th className="column1">all words:</th>
+            <th className="column2">your word:</th>
+          </tr>
+          {displayList}
+        </tbody>
+      </table>
     </div>
   );
 }
