@@ -111,8 +111,7 @@ function App() {
       case "results":
         setPhase("submit");
         console.log("changed phase to submit");
-        setupNextImage();
-        startNewRound();
+        setupNextImage().then((newImg) => startNewRound(newImg));
         break;
       default:
         console.error("invalid phase name, fix that shit");
@@ -122,18 +121,30 @@ function App() {
 
   function setupNextImage() {
     // get new image from api
+    const img_seed = uuid();
+    const img_url = `https://picsum.photos/seed/${img_seed}/200/300`;
+
+    return fetch(`http://localhost:9292/images`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      },
+      body: JSON.stringify({
+        url: img_url,
+        alt: "randomly generated image",
+        start_time: new Date(),
+      }),
+    })
+      .then((res) => res.json())
+      .then((data) => data)
+      .catch((error) => console.log(error.message));
     // add to table
     console.log("added new image to table here");
   }
 
-  function startNewRound() {
-    fetch(`http://localhost:9292/images/next/${currentImageObj.id}`)
-      .then((res) => res.json())
-      .then((data) => {
-        console.log(data);
-        setCurrentImageObj(data);
-      })
-      .catch((error) => console.log(error.message));
+  function startNewRound(newImg) {
+    setCurrentImageObj(newImg);
   }
 
   return (
@@ -144,7 +155,7 @@ function App() {
         Current Phase: <b>{phase}</b>; <em>Click to progress</em>
       </button>
 
-      <Timer phase={phase} setPhase={setPhase} progressPhase={progressPhase} />
+      <Timer progressPhase={progressPhase} />
       <Image currentImageObj={currentImageObj} />
       <Instructions phase={phase} />
       {phase === "submit" && (

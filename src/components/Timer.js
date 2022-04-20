@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 import Countdown from "./Countdown";
 
-function Timer({ phase, setPhase, progressPhase }) {
+function Timer({ progressPhase }) {
   const [dateTime, setDateTime] = useState(new Date().toLocaleString());
-  const [seconds, setSeconds] = useState("");
+  const [secondsPast, setSecondsPast] = useState("");
 
   useEffect(() => {
     let secTimer = setInterval(() => {
@@ -14,10 +14,10 @@ function Timer({ phase, setPhase, progressPhase }) {
   }, []);
 
   useEffect(() => {
-    setSeconds(`${dateTime}`.slice(-5, -3));
+    setSecondsPast(`${dateTime}`.slice(-5, -3));
   }, [dateTime]);
 
-  // const getSeconds = `${dateTime}`.slice(-5, -3);
+  // const getSecondsPast = `${dateTime}`.slice(-5, -3);
   // const minutes = `${Math.floor(dateTime / 60)}`;
   // const getMinutes = `0${minutes % 60}`.slice(-2);
   // const getHours = `0${Math.floor(dateTime / 3600)}`.slice(-2);
@@ -26,14 +26,9 @@ function Timer({ phase, setPhase, progressPhase }) {
     <div className="timerContainer grid-item2">
       <span>{dateTime}</span>
 
-      {/* <span>{seconds}</span> */}
+      <span>{secondsPast}</span>
 
-      <Countdown
-        secondsPast={seconds}
-        phase={phase}
-        setPhase={setPhase}
-        progressPhase={progressPhase}
-      />
+      <Countdown secondsPast={secondsPast} progressPhase={progressPhase} />
     </div>
   );
 }
