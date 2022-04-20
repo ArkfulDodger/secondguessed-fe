@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 
-function Results({ userIP, currentImageObj, currentGuessObj }) {
+function Results({ sessionId, currentImageObj, currentGuessObj }) {
   const [finalWordsList, setFinalWordsList] = useState([]);
   const [winningWordsIds, setWinningWordsIds] = useState([]);
 

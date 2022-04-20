@@ -12,7 +12,7 @@ import Footer from "./components/Footer";
 
 function App() {
   // the current user IP TODO: derive from session or internal storage
-  const [userIP, setUserIP] = useState("000.000.0.0");
+  const [sessionId, setsessionId] = useState("000.000.0.0");
 
   const [phase, setPhase] = useState("submit");
   // phases: submit, vote, results
@@ -30,10 +30,15 @@ function App() {
 
   // get desired first image on app load
   useEffect(() => {
+    fetch(`http://localhost:9292/current-user`)
+      .then((res) => res.json())
+      .then((data) => console.log(data))
+      .catch((error) => console.log(error.message));
+
     fetch(`http://localhost:9292/images/first`)
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
+        // console.log(data);
         setCurrentImageObj(data);
       })
       .catch((error) => console.log(error.message));
@@ -74,11 +79,33 @@ function App() {
       .catch((error) => console.log(error.message));
   }
 
+  function postSession() {
+    fetch(`http://localhost:9292/`)
+      .then((res) => {
+        console.log("RES:", res);
+        return res.json();
+      })
+      .then((data) => console.log("DATA:", data))
+      .catch((error) => console.log(error.message));
+  }
+
+  function getSession() {
+    fetch(`http://localhost:9292/session_value`)
+      .then((res) => {
+        console.log("RES:", res);
+        return res.json();
+      })
+      .then((data) => console.log("DATA:", data))
+      .catch((error) => console.log(error.message));
+  }
+
   return (
     <div className="container">
       <button onClick={progressPhase}>
         Cur Phase: {phase}; Click to progress
       </button>
+      <button onClick={postSession}>Post Session Data</button>
+      <button onClick={getSession}>Get Session Data</button>
       <Header />
       <Timer />
       <Image currentImageObj={currentImageObj} />
@@ -88,7 +115,7 @@ function App() {
           currentImageObj={currentImageObj}
           wordToSubmit={wordToSubmit}
           setWordToSubmit={setWordToSubmit}
-          userIP={userIP}
+          sessionId={sessionId}
         />
       )}
       {phase === "vote" && (
@@ -97,12 +124,12 @@ function App() {
           wordToSubmit={wordToSubmit}
           currentGuessObj={currentGuessObj}
           setCurrentGuessObj={setCurrentGuessObj}
-          userIP={userIP}
+          sessionId={sessionId}
         />
       )}
       {phase === "results" && (
         <Results
-          userIP={userIP}
+          sessionId={sessionId}
           currentImageObj={currentImageObj}
           currentGuessObj={currentGuessObj}
         />
