@@ -120,7 +120,7 @@ function App() {
   function setupNextImage() {
     // get new image from api
     const img_seed = uuid();
-    const img_url = `https://picsum.photos/seed/${img_seed}/200/300`;
+    const img_url = `https://picsum.photos/seed/${img_seed}/700/500`;
 
     return fetch(`http://localhost:9292/images`, {
       method: "POST",

@@ -60,7 +60,7 @@ function WordToGuess({
   function setAsGuess() {
     const submittedGuess = {
       image_id: currentImageObj.id,
-      session_idP: currentUserObj.session_id,
+      user_id: currentUserObj.id,
       word_id: word.id,
     };
     console.log(submittedGuess);
