@@ -1,4 +1,3 @@
-import logo from "./logo.svg";
 import "./App.css";
 import react, { useState, useEffect } from "react";
 import Header from "./components/Header";
@@ -7,9 +6,8 @@ import Image from "./components/Image";
 import Instructions from "./components/Instructions";
 import Timer from "./components/Timer";
 import Word from "./components/Word";
-import Results from "./Results";
+import Results from "./components/Results";
 import Footer from "./components/Footer";
-import Countdown from "./components/Countdown";
 import { v4 as uuid } from "uuid";
 
 function App() {
