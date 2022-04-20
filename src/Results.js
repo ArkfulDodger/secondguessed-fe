@@ -52,7 +52,7 @@ function Results({ userIP, currentImageObj, currentGuessObj }) {
   });
 
   return (
-    <div className="results">
+    <div className="results grid-item10">
       <h2>{winLossText}</h2>
       <ol>{displayList}</ol>
     </div>

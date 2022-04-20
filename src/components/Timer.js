@@ -23,7 +23,7 @@ function Timer(props) {
   // const getHours = `0${Math.floor(dateTime / 3600)}`.slice(-2);
 
   return (
-    <div className="timerContainer">
+    <div className="timerContainer grid-item2">
       {/* <span>Time: {dateTime.toLocaleTimeString()}</span> */}
       {/* <span>Date: {dateTime.toLocaleDateString()}</span> */}
       <span>{dateTime}</span>

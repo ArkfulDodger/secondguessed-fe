@@ -5,7 +5,7 @@ function Image({ currentImageObj }) {
   // reload random image using "https://picsum.photos/{seed}/1/200/300"
 
   return (
-    <div className="imageContainer">
+    <div className="imageContainer grid-item3">
       <img
         src={currentImageObj.url}
         className="randomImage"

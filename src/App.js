@@ -77,10 +77,12 @@ function App() {
 
   return (
     <div className="container">
-      <button onClick={progressPhase}>
-        Cur Phase: <b>{phase}</b>; Click to progress
-      </button>
       <Header />
+
+      <button onClick={progressPhase} className="temp-grid-item">
+        Current Phase: <b>{phase}</b>; <em>Click to progress</em>
+      </button>
+
       <Timer />
       <Image currentImageObj={currentImageObj} />
       <Instructions phase={phase} />

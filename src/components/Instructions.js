@@ -8,7 +8,7 @@ function Instructions({ phase }) {
   // can't vote more than once. But you CAN vote for your own word.
   // cap the number of words that were submitted: only display 5-10
   return (
-    <div className="instructions">
+    <div className="instructions grid-item4">
       <span>
         {phase === "submit" &&
           "Write the word that best describes the image above"}

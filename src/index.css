@@ -26,12 +26,57 @@ body {
   color: peachpuff;
 }
 
+/* GRID ------------------------------------------------------------ */
+.grid-item1 {
+  grid-area: header;
+}
+.grid-item2 {
+  grid-area: timer;
+}
+.grid-item3 {
+  grid-area: image;
+}
+.grid-item4 {
+  grid-area: instructions;
+}
+.grid-item5 {
+  grid-area: word;
+}
+.grid-item6 {
+  grid-area: allWordsList;
+}
+.grid-item7 {
+  grid-area: results;
+}
+.grid-item8 {
+  grid-area: footer;
+}
+.temp-grid-item {
+  grid-area: phaseButton;
+}
+
+.grid-item10 {
+  grid-area: renderedContent;
+}
+
 .container {
-  display: flex;
+  /* display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
-  /* font-size: 1.5em; */
+  align-items: center; */
+  display: grid;
+  grid-template-columns: 45% 10% 45%;
+  grid-template-rows: auto;
+  grid-template-areas:
+    "header header header"
+    ". phaseButton ."
+    "timer . instructions"
+    "image image renderedContent"
+    "image image renderedContent"
+    "image image renderedContent"
+    "footer footer footer";
+
+  font-size: 18px;
 }
 
 .timerContainer,
@@ -42,14 +87,21 @@ body {
 .results {
   border: 1px solid peachpuff;
   border-radius: 25px;
-  margin: 20px;
+  margin: 10px;
 }
 
 /* HEADER --------------------------------------------------------- */
-.header {
-  margin: 30px;
+.headerContainer {
+  margin: 30px 0 10px 0;
   text-transform: uppercase;
   font-size: 3em;
+  text-align: center;
+}
+
+.temp-grid-item {
+  padding: 10px;
+  border-radius: 10px;
+  width: 100px;
 }
 
 /* TIMER --------------------------------------------------------- */
@@ -62,8 +114,12 @@ body {
 /* IMAGE --------------------------------------------------------- */
 .imageContainer {
   padding: 20px 20px;
-  width: 50%;
+  width: 80%;
   max-width: 600px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .randomImage {
@@ -73,13 +129,24 @@ body {
 
 /* INSTRUCTIONS --------------------------------------------------------- */
 .instructions {
-  padding: 20px 60px;
-  text-align: center;
+  padding: 0px 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 /* WORD --------------------------------------------------------- */
 .word {
   padding: 40px 80px;
+}
+
+input {
+  border-radius: 10px;
+  background-color: peachpuff;
+  color: #333;
+  font-family: Test, "Helvetica", sans-serif;
+  font-size: 16px;
+  padding: 10px;
 }
 
 input.hidden {
@@ -106,24 +173,25 @@ input.hidden {
 
 /* RESULTS --------------------------------------------------------- */
 .results {
-  padding: 80px 140px;
+  padding: 40px 40px;
 }
 
 /* FOOTER --------------------------------------------------------- */
 .footer {
+  background-color: rgba(51, 51, 51, 0.659);
   font-size: 14px;
   color: #ffdab9;
   text-align: center;
-  position: static;
+  position: absolute;
   bottom: 0;
-  height: 2.5rem;
-  width: 75%;
+  height: 2rem;
+  width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 10px;
   margin: 60px 0 0 0;
-  padding: 20px;
+  padding: 10px;
 }
 
 .footer i {
@@ -132,4 +200,16 @@ input.hidden {
 
 .footer i:hover {
   transform: rotate(360deg);
+}
+
+.footer .icon {
+  color: peachpuff;
+}
+
+.footer .icon:hover {
+  color: peachpuff;
+}
+
+.footer .icon:visited {
+  color: rgb(185, 107, 39);
 }

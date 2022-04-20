@@ -40,7 +40,7 @@ function Word({ currentImageObj, wordToSubmit, setWordToSubmit, userIP }) {
   const inputClassName = submittedThisRound === false ? "" : "hidden";
 
   return (
-    <div className="word">
+    <div className="word grid-item10">
       {submittedThisRound ? (
         <span>{currentSubmission}</span>
       ) : (

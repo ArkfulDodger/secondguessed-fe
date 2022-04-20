@@ -40,7 +40,7 @@ function AllWordsList({
     />
   ));
   return (
-    <div className="allWordsListContainer">
+    <div className="allWordsListContainer grid-item10">
       <span>Submitted Words:</span>
       <ul className="allWordsList">{wordsToDisplay}</ul>
     </div>
