@@ -39,7 +39,7 @@ body {
 .grid-item4 {
   grid-area: instructions;
 }
-.grid-item5 {
+/* .grid-item5 {
   grid-area: word;
 }
 .grid-item6 {
@@ -47,7 +47,7 @@ body {
 }
 .grid-item7 {
   grid-area: results;
-}
+} */
 .grid-item8 {
   grid-area: footer;
 }
@@ -109,6 +109,15 @@ body {
   padding: 40px 80px;
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+/* COUNTDOWN ------------------------------------------------------ */
+.countdownContainer {
+  text-align: center;
+  color: rgb(19, 11, 9);
+  font-size: 18px;
 }
 
 /* IMAGE --------------------------------------------------------- */
@@ -133,6 +142,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+  text-align: center;
 }
 
 /* WORD --------------------------------------------------------- */
@@ -182,7 +192,7 @@ input.hidden {
   font-size: 14px;
   color: #ffdab9;
   text-align: center;
-  position: absolute;
+  position: static;
   bottom: 0;
   height: 2rem;
   width: 100%;

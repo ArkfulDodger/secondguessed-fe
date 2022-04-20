@@ -44,12 +44,15 @@ function App() {
     switch (phase) {
       case "submit":
         setPhase("vote");
+        console.log("changed phase to vote");
         break;
       case "vote":
         setPhase("results");
+        console.log("changed phase to results");
         break;
       case "results":
         setPhase("submit");
+        console.log("changed phase to submit");
         setupNextImage();
         startNewRound();
         break;
@@ -83,7 +86,7 @@ function App() {
         Current Phase: <b>{phase}</b>; <em>Click to progress</em>
       </button>
 
-      <Timer />
+      <Timer phase={phase} setPhase={setPhase} progressPhase={progressPhase} />
       <Image currentImageObj={currentImageObj} />
       <Instructions phase={phase} />
       {phase === "submit" && (
