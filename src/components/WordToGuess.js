@@ -5,7 +5,7 @@ function WordToGuess({
   currentGuessObj,
   setCurrentGuessObj,
   currentImageObj,
-  sessionId,
+  currentUserObj,
 }) {
   function handleClick() {
     if (currentGuessObj) {
@@ -60,7 +60,7 @@ function WordToGuess({
   function setAsGuess() {
     const submittedGuess = {
       image_id: currentImageObj.id,
-      session_idP: sessionId,
+      session_idP: currentUserObj.session_id,
       word_id: word.id,
     };
     console.log(submittedGuess);

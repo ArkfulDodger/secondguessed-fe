@@ -9,11 +9,9 @@ import Timer from "./components/Timer";
 import Word from "./components/Word";
 import Results from "./Results";
 import Footer from "./components/Footer";
+import { v4 as uuid } from "uuid";
 
 function App() {
-  // the current user IP TODO: derive from session or internal storage
-  const [sessionId, setsessionId] = useState("000.000.0.0");
-
   const [phase, setPhase] = useState("submit");
   // phases: submit, vote, results
   // conditional checks which phase & displays correct component
@@ -21,6 +19,8 @@ function App() {
   // next: set up to change on timer
 
   const [currentImageObj, setCurrentImageObj] = useState({});
+
+  const [currentUserObj, setCurrentUserObj] = useState({});
 
   // word & allWordsList both need to access this state:
   const [wordToSubmit, setWordToSubmit] = useState("");
@@ -30,10 +30,13 @@ function App() {
 
   // get desired first image on app load
   useEffect(() => {
-    fetch(`http://localhost:9292/current-user`)
-      .then((res) => res.json())
-      .then((data) => console.log(data))
-      .catch((error) => console.log(error.message));
+    if (localStorage.getItem("sessionId")) {
+      console.log("Existing ID found in local storage...");
+      getCurrentUser();
+    } else {
+      console.log("No Existing ID in local storage; Creating New...");
+      createNewUser();
+    }
 
     fetch(`http://localhost:9292/images/first`)
       .then((res) => res.json())
@@ -43,6 +46,56 @@ function App() {
       })
       .catch((error) => console.log(error.message));
   }, []);
+
+  // retrieve user from db based on ID in local storage
+  function getCurrentUser() {
+    // get existing ID from local storage
+    const existingSessionId = JSON.parse(localStorage.getItem("sessionId"));
+
+    // fetch user data from your database
+    fetch(`http://localhost:9292/users/${existingSessionId}`)
+      .then((res) => res.json())
+      .then((returnedUserData) => {
+        // if the user is found in the db, set user state to returned user
+        if (returnedUserData) {
+          console.log("User found in db!");
+          setCurrentUserObj(returnedUserData);
+
+          // if user not found in db, create new user
+        } else {
+          console.log("User not found in db; Creating New...");
+          createNewUser();
+        }
+      })
+      .catch((error) => console.log(error.message));
+  }
+
+  function createNewUser() {
+    // create new unique id
+    const sessionId = uuid();
+
+    // store id to local storage
+    localStorage.setItem("sessionId", JSON.stringify(sessionId));
+
+    // post new user
+    fetch(`http://localhost:9292/users`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      },
+      body: JSON.stringify({
+        name: "Guest",
+        session_id: sessionId,
+      }),
+    })
+      .then((res) => res.json())
+      .then((returnedUserData) => {
+        console.log("New user created");
+        setCurrentUserObj(returnedUserData);
+      })
+      .catch((error) => console.log(error.message));
+  }
 
   function progressPhase() {
     switch (phase) {
@@ -79,33 +132,11 @@ function App() {
       .catch((error) => console.log(error.message));
   }
 
-  function postSession() {
-    fetch(`http://localhost:9292/`)
-      .then((res) => {
-        console.log("RES:", res);
-        return res.json();
-      })
-      .then((data) => console.log("DATA:", data))
-      .catch((error) => console.log(error.message));
-  }
-
-  function getSession() {
-    fetch(`http://localhost:9292/session_value`)
-      .then((res) => {
-        console.log("RES:", res);
-        return res.json();
-      })
-      .then((data) => console.log("DATA:", data))
-      .catch((error) => console.log(error.message));
-  }
-
   return (
     <div className="container">
       <button onClick={progressPhase}>
         Cur Phase: {phase}; Click to progress
       </button>
-      <button onClick={postSession}>Post Session Data</button>
-      <button onClick={getSession}>Get Session Data</button>
       <Header />
       <Timer />
       <Image currentImageObj={currentImageObj} />
@@ -115,7 +146,7 @@ function App() {
           currentImageObj={currentImageObj}
           wordToSubmit={wordToSubmit}
           setWordToSubmit={setWordToSubmit}
-          sessionId={sessionId}
+          currentUserObj={currentUserObj}
         />
       )}
       {phase === "vote" && (
@@ -124,12 +155,12 @@ function App() {
           wordToSubmit={wordToSubmit}
           currentGuessObj={currentGuessObj}
           setCurrentGuessObj={setCurrentGuessObj}
-          sessionId={sessionId}
+          currentUserObj={currentUserObj}
         />
       )}
       {phase === "results" && (
         <Results
-          sessionId={sessionId}
+          currentUserObj={currentUserObj}
           currentImageObj={currentImageObj}
           currentGuessObj={currentGuessObj}
         />

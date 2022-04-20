@@ -7,7 +7,7 @@ function AllWordsList({
   wordToSubmit,
   currentGuessObj,
   setCurrentGuessObj,
-  sessionId,
+  currentUserObj,
 }) {
   const [wordsList, setWordsList] = useState([]);
   // GET words - eventually filter for only words from current game
@@ -21,7 +21,7 @@ function AllWordsList({
 
   useEffect(() => {
     fetch(
-      `http://localhost:9292/current-guess/${currentImageObj.id}/${sessionId}`
+      `http://localhost:9292/current-guess/${currentImageObj.id}/${currentUserObj.session_id}`
     )
       .then((res) => res.json())
       .then((returnedGuess) => {
@@ -38,7 +38,7 @@ function AllWordsList({
       currentGuessObj={currentGuessObj}
       setCurrentGuessObj={setCurrentGuessObj}
       currentImageObj={currentImageObj}
-      sessionId={sessionId}
+      currentUserObj={currentUserObj}
     />
   ));
   return (
