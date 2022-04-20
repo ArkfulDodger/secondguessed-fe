@@ -207,33 +207,23 @@ function App() {
           currentUserObj={currentUserObj}
           setCurrentUserObj={setCurrentUserObj}
         />
-        <button onClick={progressPhase} className="temp-grid-item">
+        {/* <button onClick={progressPhase} className="temp-grid-item">
           Current Phase: <b>{phase}</b>; <em>Click to progress</em>
-        </button>
+        </button> */}
+        <div className="phaseBtnContainer">
+          <button onClick={progressPhase} className="temp-grid-item">
+            click to progress phase
+          </button>
+        </div>
         {!!currentImageObj.start_time && (
           <Timer
             progressPhase={progressPhase}
             setPhase={setPhase}
             currentImageObj={currentImageObj}
             phaseDuration={phaseDuration}
+            phase={phase}
           />
         )}
-        <Image currentImageObj={currentImageObj} />
-        <Instructions phase={phase} />
-        {phase === "submit" && (
-          <Word
-            currentImageObj={currentImageObj}
-            wordToSubmit={wordToSubmit}
-            setWordToSubmit={setWordToSubmit}
-          />
-        )}
-        <div className="phaseBtnContainer">
-          <button onClick={progressPhase} className="temp-grid-item">
-            click to progress phase
-          </button>
-        </div>
-
-        <Timer progressPhase={progressPhase} phase={phase} />
         <Image currentImageObj={currentImageObj} />
         <Instructions phase={phase} />
         {phase === "submit" && (
