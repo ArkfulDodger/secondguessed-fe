@@ -1,3 +1,16 @@
+/* FONTS ------------------------------------------------------------ */
+@font-face {
+  font-family: "Sketchup";
+  src: local("Sketchup"),
+    url(./fonts/SketchupFreeTrial-gxmj5.otf) format("opentype");
+}
+
+@font-face {
+  font-family: "Test";
+  src: local("Test"),
+    url(./fonts/SunnyspellsRegular-MV9ze.otf) format("opentype");
+}
+
 /* GENERAL --------------------------------------------------------- */
 * {
   margin: 0;
@@ -6,7 +19,7 @@
 
 body {
   margin: 0;
-  font-family: "Helvetica", sans-serif;
+  font-family: Test, "Helvetica", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background: gray;
@@ -18,6 +31,7 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  /* font-size: 1.5em; */
 }
 
 .timerContainer,
@@ -35,17 +49,21 @@ body {
 .header {
   margin: 30px;
   text-transform: uppercase;
+  font-size: 3em;
 }
 
 /* TIMER --------------------------------------------------------- */
 .timerContainer {
   padding: 40px 80px;
+  display: flex;
+  flex-direction: column;
 }
 
 /* IMAGE --------------------------------------------------------- */
 .imageContainer {
   padding: 20px 20px;
   width: 50%;
+  max-width: 600px;
 }
 
 .randomImage {
@@ -55,7 +73,8 @@ body {
 
 /* INSTRUCTIONS --------------------------------------------------------- */
 .instructions {
-  padding: 40px 140px;
+  padding: 20px 60px;
+  text-align: center;
 }
 
 /* WORD --------------------------------------------------------- */

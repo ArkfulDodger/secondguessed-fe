@@ -11,7 +11,7 @@ function Instructions({ phase }) {
     <div className="instructions">
       <span>
         {phase === "submit" &&
-          "Please write the word that you think best describes the image above"}
+          "Write the word that best describes the image above"}
         {phase === "vote" &&
           "Choose the word you think will receive the SECOND-most votes"}
         {phase === "results" && "Results:"}

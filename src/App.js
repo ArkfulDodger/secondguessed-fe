@@ -9,6 +9,7 @@ import Timer from "./components/Timer";
 import Word from "./components/Word";
 import Results from "./Results";
 import Footer from "./components/Footer";
+import Countdown from "./components/Countdown";
 
 function App() {
   // the current user IP TODO: derive from session or internal storage
@@ -77,7 +78,7 @@ function App() {
   return (
     <div className="container">
       <button onClick={progressPhase}>
-        Cur Phase: {phase}; Click to progress
+        Cur Phase: <b>{phase}</b>; Click to progress
       </button>
       <Header />
       <Timer />
