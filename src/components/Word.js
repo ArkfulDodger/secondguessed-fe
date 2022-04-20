@@ -1,6 +1,11 @@
 import React, { useState } from "react";
 
-function Word({ currentImageObj, wordToSubmit, setWordToSubmit, userIP }) {
+function Word({
+  currentImageObj,
+  wordToSubmit,
+  setWordToSubmit,
+  currentUserObj,
+}) {
   // state: submitted word this round & stop displaying input
   const [submittedThisRound, setSubmittedThisRound] = useState(false);
   const [currentSubmission, setCurrentSubmission] = useState("");
@@ -11,7 +16,7 @@ function Word({ currentImageObj, wordToSubmit, setWordToSubmit, userIP }) {
     const testWordObj = {
       text: wordToSubmit,
       image_id: currentImageObj.id,
-      user_ip: userIP,
+      session_id: currentUserObj.session_id,
     };
 
     // add word to list of words IN DATABASE
