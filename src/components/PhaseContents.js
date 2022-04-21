@@ -14,6 +14,7 @@ function PhaseContents({
   setCurrentSubmission,
   currentGuessObj,
   setCurrentGuessObj,
+  URL,
 }) {
   return (
     <div className="phaseContentsContainer grid-item12">
@@ -26,6 +27,7 @@ function PhaseContents({
           currentUserObj={currentUserObj}
           currentSubmission={currentSubmission}
           setCurrentSubmission={setCurrentSubmission}
+          URL={URL}
         />
       )}
       {phase === "vote" && (
@@ -35,6 +37,7 @@ function PhaseContents({
           currentGuessObj={currentGuessObj}
           setCurrentGuessObj={setCurrentGuessObj}
           currentUserObj={currentUserObj}
+          URL={URL}
         />
       )}
       {phase === "results" && (
@@ -42,6 +45,7 @@ function PhaseContents({
           currentUserObj={currentUserObj}
           currentImageObj={currentImageObj}
           currentGuessObj={currentGuessObj}
+          URL={URL}
         />
       )}
     </div>

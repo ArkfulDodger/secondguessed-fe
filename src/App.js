@@ -8,6 +8,8 @@ import PhaseContents from "./components/PhaseContents";
 
 const phaseDuration = 45 * 1000;
 const phaseCount = 3;
+const URL = "https://morning-hollows-37806.herokuapp.com"; // Heroku
+//const URL = 'http://localhost:9292' // Local
 
 function App() {
   const [phase, setPhase] = useState("submit");
@@ -38,7 +40,7 @@ function App() {
       createNewUser();
     }
 
-    fetch(`http://localhost:9292/images/current`)
+    fetch(`${URL}/images/current`)
       .then((res) => res.json())
       .then((returnImgObj) => {
         // console.group("Img Fetch");
@@ -66,9 +68,7 @@ function App() {
       return;
     }
 
-    fetch(
-      `http://localhost:9292/current-guess/${currentImageObj.id}/${currentUserObj.id}`
-    )
+    fetch(`${URL}/current-guess/${currentImageObj.id}/${currentUserObj.id}`)
       .then((res) => res.json())
       .then((returnedGuess) => {
         console.log(
@@ -78,9 +78,7 @@ function App() {
       })
       .catch((error) => console.log(error.message));
 
-    fetch(
-      `http://localhost:9292/current-word/${currentImageObj.id}/${currentUserObj.id}`
-    )
+    fetch(`${URL}/current-word/${currentImageObj.id}/${currentUserObj.id}`)
       .then((res) => res.json())
       .then((returnedWord) => {
         console.log(
@@ -140,7 +138,7 @@ function App() {
     const existingSessionId = JSON.parse(localStorage.getItem("sessionId"));
 
     // fetch user data from your database
-    fetch(`http://localhost:9292/users/${existingSessionId}`)
+    fetch(`${URL}/users/${existingSessionId}`)
       .then((res) => res.json())
       .then((returnedUserData) => {
         // if the user is found in the db, set user state to returned user
@@ -165,7 +163,7 @@ function App() {
     localStorage.setItem("sessionId", JSON.stringify(sessionId));
 
     // post new user
-    fetch(`http://localhost:9292/users`, {
+    fetch(`${URL}/users`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -212,7 +210,7 @@ function App() {
     const img_seed = uuid();
     const img_url = `https://picsum.photos/seed/${img_seed}/700/500`;
 
-    return fetch(`http://localhost:9292/images`, {
+    return fetch(`${URL}/images`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -246,6 +244,7 @@ function App() {
           currentImageObj={currentImageObj}
           phaseDuration={phaseDuration}
           phase={phase}
+          URL={URL}
         />
 
         <div className="gridContainer">
@@ -261,6 +260,7 @@ function App() {
             currentGuessObj={currentGuessObj}
             setCurrentGuessObj={setCurrentGuessObj}
             phase={phase}
+            URL={URL}
           />
         </div>
       </div>

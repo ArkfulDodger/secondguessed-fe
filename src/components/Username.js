@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-function Username({ currentUserObj, setCurrentUserObj }) {
+function Username({ currentUserObj, setCurrentUserObj, URL }) {
   const [usernameInput, setUsernameInput] = useState("");
   const [usernameSubmitted, setUsernameSubmitted] = useState(
     currentUserObj.name !== "Guest"
@@ -17,7 +17,7 @@ function Username({ currentUserObj, setCurrentUserObj }) {
     }
 
     // PATCH: add username to user in database
-    fetch(`http://localhost:9292/users/${currentUserObj.id}`, {
+    fetch(`${URL}/users/${currentUserObj.id}`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",

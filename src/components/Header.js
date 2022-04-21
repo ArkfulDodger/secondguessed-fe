@@ -11,6 +11,7 @@ function Header({
   currentImageObj,
   phaseDuration,
   phase,
+  URL,
 }) {
   return (
     <div className="headerContainer">
@@ -43,6 +44,7 @@ function Header({
         <Username
           currentUserObj={currentUserObj}
           setCurrentUserObj={setCurrentUserObj}
+          URL={URL}
         />
       </div>
     </div>

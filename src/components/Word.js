@@ -7,6 +7,7 @@ function Word({
   currentUserObj,
   currentSubmission,
   setCurrentSubmission,
+  URL,
 }) {
   // state: submitted word this round & stop displaying input
   // const [submittedThisRound, setSubmittedThisRound] = useState(false);
@@ -44,7 +45,7 @@ function Word({
 
   function postNewSubmission(wordObj) {
     // add word to list of words IN DATABASE
-    fetch(`http://localhost:9292/words`, {
+    fetch(`${URL}/words`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -64,19 +65,16 @@ function Word({
 
   function patchSubmission(wordObj) {
     // update current submission IN DATABASE
-    fetch(
-      `http://localhost:9292/words/${currentImageObj.id}/${currentUserObj.id}`,
-      {
-        method: "PATCH",
-        headers: {
-          "Content-Type": "application/json",
-          Accept: "application/json",
-        },
-        body: JSON.stringify({
-          text: wordObj.text,
-        }),
-      }
-    )
+    fetch(`${URL}/words/${currentImageObj.id}/${currentUserObj.id}`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      },
+      body: JSON.stringify({
+        text: wordObj.text,
+      }),
+    })
       .then((res) => res.json())
       .then((data) => {
         console.log("updated submitted word in database!");

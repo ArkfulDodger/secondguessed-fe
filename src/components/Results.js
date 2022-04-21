@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
 
-function Results({ currentUserObj, currentImageObj, currentGuessObj }) {
+function Results({ currentUserObj, currentImageObj, currentGuessObj, URL }) {
   const [finalWordsList, setFinalWordsList] = useState([]);
   const [winningWordsIds, setWinningWordsIds] = useState([]);
 
   useEffect(() => {
-    fetch(`http://localhost:9292/final-words/${currentImageObj.id}`)
+    fetch(`${URL}/final-words/${currentImageObj.id}`)
       .then((res) => res.json())
       .then((data) => {
         const words = JSON.parse(data.words);

@@ -8,12 +8,13 @@ function AllWordsList({
   currentGuessObj,
   setCurrentGuessObj,
   currentUserObj,
+  URL,
 }) {
   const [wordsList, setWordsList] = useState([]);
   // GET words - eventually filter for only words from current game
 
   useEffect(() => {
-    fetch(`http://localhost:9292/words/${currentImageObj.id}`)
+    fetch(`${URL}/words/${currentImageObj.id}`)
       .then((res) => res.json())
       .then((listOfSubmittedWords) => setWordsList(listOfSubmittedWords))
       .catch((error) => console.log(error.message));
@@ -27,6 +28,7 @@ function AllWordsList({
       setCurrentGuessObj={setCurrentGuessObj}
       currentImageObj={currentImageObj}
       currentUserObj={currentUserObj}
+      URL={URL}
     />
   ));
   return (

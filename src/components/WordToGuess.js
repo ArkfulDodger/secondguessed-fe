@@ -6,6 +6,7 @@ function WordToGuess({
   setCurrentGuessObj,
   currentImageObj,
   currentUserObj,
+  URL,
 }) {
   function handleClick() {
     if (currentGuessObj) {
@@ -20,7 +21,7 @@ function WordToGuess({
   }
 
   function removeGuess() {
-    fetch(`http://localhost:9292/guesses/${currentGuessObj.id}`, {
+    fetch(`${URL}/guesses/${currentGuessObj.id}`, {
       method: "DELETE",
     })
       .then((res) => {
@@ -39,7 +40,7 @@ function WordToGuess({
 
     const updatedGuessObj = { ...currentGuessObj, word_id: word.id };
 
-    fetch(`http://localhost:9292/guesses/${currentGuessObj.id}`, {
+    fetch(`${URL}/guesses/${currentGuessObj.id}`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
@@ -63,7 +64,7 @@ function WordToGuess({
     };
 
     // create a new guess with word
-    fetch(`http://localhost:9292/guesses`, {
+    fetch(`${URL}/guesses`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
