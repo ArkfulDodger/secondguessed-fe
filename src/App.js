@@ -11,7 +11,7 @@ import Results from "./components/Results";
 import Footer from "./components/Footer";
 import { v4 as uuid } from "uuid";
 
-const phaseDuration = 20 * 1000;
+const phaseDuration = 45 * 1000;
 const phaseCount = 3;
 
 function App() {
@@ -30,6 +30,8 @@ function App() {
 
   // the user's current guess
   const [currentGuessObj, setCurrentGuessObj] = useState({});
+
+  const [currentSubmission, setCurrentSubmission] = useState({});
 
   // get desired first image on app load
   useEffect(() => {
@@ -62,6 +64,38 @@ function App() {
       })
       .catch((error) => console.log(error.message));
   }, []);
+
+  useEffect(() => {
+    if (!currentImageObj.id || !currentUserObj.id) {
+      console.log("escaped guess fetch");
+      return;
+    }
+
+    fetch(
+      `http://localhost:9292/current-guess/${currentImageObj.id}/${currentUserObj.id}`
+    )
+      .then((res) => res.json())
+      .then((returnedGuess) => {
+        console.log(
+          (returnedGuess && "current guess retrieved") || "no guess in db"
+        );
+        setCurrentGuessObj(returnedGuess);
+      })
+      .catch((error) => console.log(error.message));
+
+    fetch(
+      `http://localhost:9292/current-word/${currentImageObj.id}/${currentUserObj.id}`
+    )
+      .then((res) => res.json())
+      .then((returnedWord) => {
+        console.log(
+          (returnedWord && "current submitted word retrieved") ||
+            "no submitted word in db"
+        );
+        setCurrentSubmission(returnedWord);
+      })
+      .catch((error) => console.log(error.message));
+  }, [currentImageObj, currentUserObj]);
 
   function isInPlay(imgObj) {
     // console.log("Date.now: ", Date.now());
@@ -232,6 +266,8 @@ function App() {
               wordToSubmit={wordToSubmit}
               setWordToSubmit={setWordToSubmit}
               currentUserObj={currentUserObj}
+              currentSubmission={currentSubmission}
+              setCurrentSubmission={setCurrentSubmission}
             />
           )}
           {phase === "vote" && (
