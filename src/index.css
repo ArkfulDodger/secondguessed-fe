@@ -297,19 +297,23 @@ button:hover {
   align-items: center;
   justify-content: center;
   width: 100%;
-  border: 1px solid green;
+  /* border: 1px solid green; */
   margin-top: 60px;
 }
 
 .wordForm {
   width: 80%;
   text-align: center;
-  border: 1px solid green;
+  /* border: 1px solid green; */
+}
+
+.submitBtn {
+  margin: 10px;
 }
 
 .wordInput {
   width: 70%;
-  border: 1px solid red;
+  /* border: 1px solid red; */
   font-size: 40px;
   padding: 40px 50px;
   border-radius: 25px;
@@ -422,9 +426,9 @@ button:hover {
 
 /* MEDIA QUERIES ------------------------------------------- */
 @media only screen and (max-width: 1550px) {
-  body {
+  /* body {
     color: yellowgreen;
-  }
+  } */
 
   .imageContainer {
     width: 90%;
@@ -436,9 +440,9 @@ button:hover {
 }
 
 @media only screen and (max-width: 1400px) {
-  body {
+  /* body {
     color: blueviolet;
-  }
+  } */
 
   /* .gridContainer {
     display: grid;
@@ -464,9 +468,9 @@ button:hover {
 
 /* Mobile media query */
 @media only screen and (max-width: 600px) {
-  body {
+  /* body {
     color: orange;
-  }
+  } */
 
   .headerContainer {
     /* margin-bottom: 30px;

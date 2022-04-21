@@ -96,8 +96,9 @@ function Word({
               name="word"
               value={wordToSubmit}
               onChange={(e) => setWordToSubmit(e.target.value)}
-              placeholder="enter your word or phrase"
+              placeholder="type here"
             ></input>
+            <input type="submit" value="Submit" className="submitBtn" />
           </form>
         </div>
       ) : (
