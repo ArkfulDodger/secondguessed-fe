@@ -48,8 +48,8 @@ function Timer({
   }
 
   return (
-    <div className="timerContainer grid-item2">
-      <span>{dateTime}</span>
+    <div className="timerContainer head-grid-item4">
+      {/* <span>{dateTime}</span> */}
 
       {/* <span>{secToNextPhase}</span> */}
 

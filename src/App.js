@@ -1,15 +1,10 @@
 import "./App.css";
 import react, { useState, useEffect } from "react";
 import Header from "./components/Header";
-import Username from "./components/Username";
-import AllWordsList from "./components/AllWordsList";
 import Image from "./components/Image";
-import Instructions from "./components/Instructions";
-import Timer from "./components/Timer";
-import Word from "./components/Word";
-import Results from "./components/Results";
 import Footer from "./components/Footer";
 import { v4 as uuid } from "uuid";
+import PhaseContents from "./components/PhaseContents";
 
 const phaseDuration = 45 * 1000;
 const phaseCount = 3;
@@ -247,45 +242,26 @@ function App() {
           currentUserObj={currentUserObj}
           setCurrentUserObj={setCurrentUserObj}
           progressPhase={progressPhase}
+          setPhase={setPhase}
+          currentImageObj={currentImageObj}
+          phaseDuration={phaseDuration}
+          phase={phase}
         />
+
         <div className="gridContainer">
-          {!!currentImageObj.start_time && (
-            <Timer
-              progressPhase={progressPhase}
-              setPhase={setPhase}
-              currentImageObj={currentImageObj}
-              phaseDuration={phaseDuration}
-              phase={phase}
-            />
-          )}
           <Image currentImageObj={currentImageObj} />
-          <Instructions phase={phase} />
-          {phase === "submit" && (
-            <Word
-              currentImageObj={currentImageObj}
-              wordToSubmit={wordToSubmit}
-              setWordToSubmit={setWordToSubmit}
-              currentUserObj={currentUserObj}
-              currentSubmission={currentSubmission}
-              setCurrentSubmission={setCurrentSubmission}
-            />
-          )}
-          {phase === "vote" && (
-            <AllWordsList
-              currentImageObj={currentImageObj}
-              wordToSubmit={wordToSubmit}
-              currentGuessObj={currentGuessObj}
-              setCurrentGuessObj={setCurrentGuessObj}
-              currentUserObj={currentUserObj}
-            />
-          )}
-          {phase === "results" && (
-            <Results
-              currentUserObj={currentUserObj}
-              currentImageObj={currentImageObj}
-              currentGuessObj={currentGuessObj}
-            />
-          )}
+
+          <PhaseContents
+            currentImageObj={currentImageObj}
+            wordToSubmit={wordToSubmit}
+            setWordToSubmit={setWordToSubmit}
+            currentUserObj={currentUserObj}
+            currentSubmission={currentSubmission}
+            setCurrentSubmission={setCurrentSubmission}
+            currentGuessObj={currentGuessObj}
+            setCurrentGuessObj={setCurrentGuessObj}
+            phase={phase}
+          />
         </div>
       </div>
       <Footer />

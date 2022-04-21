@@ -17,8 +17,6 @@
   --main: #ad727e;
   --secondary: #d09fa9;
   --text: #333;
-  --container: ;
-  --inner: ;
 }
 
 /* GENERAL --------------------------------------------------------- */
@@ -72,7 +70,7 @@ button {
 }
 
 button:hover {
-  background: rgb(144, 118, 165);
+  background: #6a3557;
 }
 
 .headerContainer,
@@ -82,12 +80,9 @@ button:hover {
 }
 
 /* Outer containers ------------------- */
+.phaseContentsContainer,
 .timerContainer,
-.imageContainer,
-.instructionsContainer,
-.wordContainer,
-.allWordsListContainer,
-.resultsContainer {
+.imageContainer {
   border: 1px solid rgb(26, 25, 27);
   border-radius: 25px;
   box-shadow: 0 0 10px rgb(37, 1, 37), 0 0 3px rgb(247, 243, 247);
@@ -108,9 +103,6 @@ button:hover {
 
 /* GRID ------------------------------------------------------------ */
 
-.grid-item2 {
-  grid-area: timer;
-}
 .grid-item3 {
   grid-area: image;
 }
@@ -120,14 +112,11 @@ button:hover {
 .grid-item8 {
   grid-area: footer;
 }
-/* .temp-grid-item {
-  grid-area: phaseButton;
-} */
 .grid-item10 {
   grid-area: renderedContent;
 }
-.grid-item11 {
-  grid-area: username;
+.grid-item12 {
+  grid-area: phaseContents;
 }
 
 .pageContainer {
@@ -142,23 +131,21 @@ button:hover {
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  width: 100%;
   /* border: 3px solid blue; */
 }
 
 .gridContainer {
-  /* border: 3px solid red; */
-  max-height: 100vh;
   display: grid;
-  grid-template-columns: 45% 10% 45%;
+  grid-template-columns: 60% 40%;
   grid-template-rows: auto;
   grid-template-areas:
-    "timer . instructions"
-    "image image renderedContent"
-    "image image renderedContent"
-    "image image renderedContent"
-    "footer footer footer";
-  padding-bottom: 3rem;
+    "image phaseContents"
+    "image phaseContents"
+    "footer footer";
+  padding-bottom: 10rem;
   margin: 0;
+  width: 80%;
 }
 
 /* HEADER --------------------------------------------------------- */
@@ -171,6 +158,9 @@ button:hover {
 .head-grid-item3 {
   grid-area: button;
 }
+.head-grid-item4 {
+  grid-area: timer;
+}
 
 .headerContainer {
   width: 100%;
@@ -182,10 +172,11 @@ button:hover {
   font-weight: 100;
   display: grid;
   grid-template-columns: 20% 60% 20%;
-  grid-template-areas: "button title username";
+  grid-template-rows: auto;
+  grid-template-areas: " timer title username";
 }
 
-.headerContainer h1 {
+.headerContainer h1.title {
   font-size: 100px;
 }
 
@@ -209,6 +200,16 @@ button:hover {
   align-items: center;
 }
 
+/* TIMER --------------------------------------------------------- */
+.timerContainer {
+  padding: 40px 0px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+}
+
 /* USERNAME INPUT ------------------------------------------------- */
 .usernameContainer {
   display: flex;
@@ -225,16 +226,6 @@ button:hover {
 
 .usernameContainer button {
   font-size: 14px;
-}
-
-/* TIMER --------------------------------------------------------- */
-.timerContainer {
-  padding: 40px 0px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  gap: 20px;
 }
 
 /* COUNTDOWN ------------------------------------------------------ */
@@ -266,6 +257,7 @@ button:hover {
   justify-content: center;
   align-items: center;
   text-align: center;
+  margin-top: 20px;
 }
 
 /* WORD --------------------------------------------------------- */
