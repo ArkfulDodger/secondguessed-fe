@@ -89,19 +89,23 @@ function Word({
   return (
     <div className="wordContainer grid-item10">
       {!currentSubmission || isBeingEdited ? (
-        <form onSubmit={(e) => handleSubmit(e)}>
-          <input
-            // className={inputClassName}
-            name="word"
-            value={wordToSubmit}
-            onChange={(e) => setWordToSubmit(e.target.value)}
-            placeholder="enter your word or phrase"
-          ></input>
-        </form>
+        <div className="formContainer">
+          <form className="wordForm" onSubmit={(e) => handleSubmit(e)}>
+            <input
+              className="wordInput"
+              name="word"
+              value={wordToSubmit}
+              onChange={(e) => setWordToSubmit(e.target.value)}
+              placeholder="enter your word or phrase"
+            ></input>
+          </form>
+        </div>
       ) : (
         <div className="submittedWord">
           <span>You submitted:</span>
-          <span>{currentSubmission.text}</span>
+          <span className="currentSubmissionText">
+            <b>{currentSubmission.text}</b>
+          </span>
 
           {/* button to edit submission - brings back form */}
           {/* will this allow new submission to write over previous? */}

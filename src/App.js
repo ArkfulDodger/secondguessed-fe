@@ -1,4 +1,3 @@
-import "./App.css";
 import react, { useState, useEffect } from "react";
 import Header from "./components/Header";
 import Image from "./components/Image";
