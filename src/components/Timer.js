@@ -48,18 +48,18 @@ function Timer({
   }
 
   return (
-    <div className="timerContainer head-grid-item4">
-      {/* <span>{dateTime}</span> */}
-
-      {/* <span>{secToNextPhase}</span> */}
-
-      <Countdown
-        secToNextPhase={secToNextPhase}
-        progressPhase={progressPhase}
-        setPhase={setPhase}
-        phaseDuration={phaseDuration}
-        phase={phase}
-      />
+    <div className="timerOuterDiv head-grid-item4">
+      <div className="timerContainer">
+        {/* <span>{dateTime}</span> */}
+        {/* <span>{secToNextPhase}</span> */}
+        <Countdown
+          secToNextPhase={secToNextPhase}
+          progressPhase={progressPhase}
+          setPhase={setPhase}
+          phaseDuration={phaseDuration}
+          phase={phase}
+        />
+      </div>
     </div>
   );
 }

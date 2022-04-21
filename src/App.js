@@ -1,4 +1,3 @@
-import "./App.css";
 import react, { useState, useEffect } from "react";
 import Header from "./components/Header";
 import Image from "./components/Image";
@@ -6,7 +5,7 @@ import Footer from "./components/Footer";
 import { v4 as uuid } from "uuid";
 import PhaseContents from "./components/PhaseContents";
 
-const phaseDuration = 45 * 1000;
+const phaseDuration = 1000 * 1000;
 const phaseCount = 3;
 
 function App() {
