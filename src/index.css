@@ -12,6 +12,15 @@
     url(./fonts/LandasansMedium-ALJ6m.otf) format("opentype");
 }
 
+/* COLOR VARIABLES -------------------------------------------------- */
+:root {
+  --main: #ad727e;
+  --secondary: #d09fa9;
+  --text: #333;
+  --container: ;
+  --inner: ;
+}
+
 /* GENERAL --------------------------------------------------------- */
 * {
   margin: 0;
@@ -28,14 +37,14 @@ body {
   background-size: cover;
   background-repeat: no-repeat;
   background-attachment: fixed;
-  color: black;
+  color: var(--text);
   font-weight: 100;
 }
 
 input {
   border-radius: 10px;
-  background-color: peachpuff;
-  color: #333;
+  background-color: var(--secondary);
+  color: var(--text);
   font-family: Custom, "Helvetica", sans-serif;
   font-size: 18px;
   padding: 10px;
@@ -54,10 +63,10 @@ button {
   padding: 10px;
   border-radius: 10px;
   width: 100px;
-  background: rgb(5, 2, 0);
+  background: #333;
   color: peachpuff;
   border: 1px solid #333;
-  box-shadow: 0 0 1px #333;
+  box-shadow: 0 0 1px rgb(157, 55, 55);
   font-family: Custom, "Helvetica", sans-serif;
   font-size: 20px;
 }
@@ -69,7 +78,7 @@ button:hover {
 .headerContainer,
 .footer {
   background-color: rgba(22, 20, 27, 0.659);
-  color: rgb(241, 203, 171);
+  color: var(--main);
 }
 
 /* Outer containers ------------------- */
@@ -83,7 +92,7 @@ button:hover {
   border-radius: 25px;
   box-shadow: 0 0 10px rgb(37, 1, 37), 0 0 3px rgb(247, 243, 247);
   margin: 10px;
-  background: rgb(213, 177, 147);
+  background: var(--main);
 }
 
 /* Inner Containers ------------------- */
@@ -91,7 +100,7 @@ button:hover {
 .instructions,
 .resultsTable,
 .resultsTableRow {
-  background: peachpuff;
+  background: var(--secondary);
   padding: 20px 0;
   width: 80%;
   border-radius: 15px;
@@ -186,9 +195,10 @@ button:hover {
 
 .currentUser {
   font-family: Custom;
+  font-size: 20px;
   border: 1px solid rgb(26, 25, 27);
   border-radius: 25px;
-  box-shadow: 0 0 10px rgb(37, 1, 37), 0 0 3px rgb(247, 243, 247);
+  box-shadow: 0 0 10px rgb(97, 36, 40), 0 0 3px rgb(247, 243, 247);
   margin: 10px;
   background: rgb(45, 45, 45);
 }
@@ -230,7 +240,7 @@ button:hover {
 /* COUNTDOWN ------------------------------------------------------ */
 .countdownContainer {
   text-align: center;
-  color: rgb(19, 11, 9);
+  color: var(--text);
   font-size: 18px;
 }
 
@@ -351,11 +361,11 @@ button:hover {
 }
 
 .footer .icon {
-  color: peachpuff;
+  color: var(--main);
 }
 
 .footer .icon:hover {
-  color: peachpuff;
+  color: var(--main);
 }
 
 .footer .icon:visited {
