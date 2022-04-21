@@ -20,14 +20,12 @@ function WordToGuess({
   }
 
   function removeGuess() {
-    console.log("removed guess!");
-
     fetch(`http://localhost:9292/guesses/${currentGuessObj.id}`, {
       method: "DELETE",
     })
       .then((res) => {
         if (res.ok) {
-          console.log("successful deletion");
+          console.log("removed guess!");
           setCurrentGuessObj(null);
         } else {
           alert("something went wrong");
@@ -63,7 +61,6 @@ function WordToGuess({
       user_id: currentUserObj.id,
       word_id: word.id,
     };
-    console.log(submittedGuess);
 
     // create a new guess with word
     fetch(`http://localhost:9292/guesses`, {
@@ -76,7 +73,7 @@ function WordToGuess({
     })
       .then((res) => res.json())
       .then((guessObj) => {
-        console.log(guessObj);
+        console.log("submitted new guess!");
         setCurrentGuessObj(guessObj);
       })
       .catch((error) => console.log(error.message));

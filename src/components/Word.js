@@ -30,8 +30,6 @@ function Word({
     };
 
     // add word to list of words IN DATABASE
-    console.log("Before POST", testWordObj);
-
     fetch(`http://localhost:9292/words`, {
       method: "POST",
       headers: {
@@ -42,7 +40,7 @@ function Word({
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log("POST data: ", data);
+        console.log("submitted word to database!");
         setSubmittedThisRound(true);
         setCurrentSubmission(data.text);
       })

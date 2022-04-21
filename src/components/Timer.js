@@ -8,60 +8,44 @@ function Timer({
   phaseDuration,
   phase,
 }) {
+  // Set state for the clock (dateTime) and countdown timer (secToNextPhase)
   const [dateTime, setDateTime] = useState(new Date().toLocaleString());
-  const [secondsPast, setSecondsPast] = useState(0);
   const [secToNextPhase, setSecToNextPhase] = useState(
     secondsRemainingInPhase()
   );
 
-  // console.log("imgObj:", currentImageObj);
-
+  // setTimeout to update the Timer/Phase at the next second-marker
   useEffect(() => {
-    let secTimer;
-    let timerStart = setTimeout(() => {
-      secTimer = setInterval(() => {
-        setDateTime(new Date().toLocaleString());
-        const newSecondsRemaining = secondsRemainingInPhase();
-        console.log("secToNextPhase", secToNextPhase);
-        console.log("newRemaining", newSecondsRemaining);
-        if (secToNextPhase < newSecondsRemaining) {
-          progressPhase();
-        }
-        setSecToNextPhase(newSecondsRemaining);
-      }, 1000);
+    const timer = setTimeout(() => {
+      updateTimerAndPhase();
     }, 1000 - (Date.now() % 1000));
 
-    return () => {
-      clearTimeout(timerStart);
-      secTimer && clearInterval(secTimer);
-    };
-  }, []);
+    return () => clearTimeout(timer);
+  }, [secToNextPhase]);
 
+  // update the clock/timer/phase
+  function updateTimerAndPhase() {
+    setDateTime(new Date().toLocaleString());
+    const newSecondsRemaining = secondsRemainingInPhase();
+
+    // checks if the newly calculated seconds remaining is higher than the
+    // seconds remaining currently in state (prior to change)
+    // if so, the phase needs to be progressed
+    if (newSecondsRemaining > secToNextPhase) {
+      progressPhase();
+    }
+    setSecToNextPhase(newSecondsRemaining);
+  }
+
+  // get seconds remaining in the current phase for the current image
   function secondsRemainingInPhase() {
     const timeSinceStart = Date.now() - currentImageObj.start_time;
     const timeIntoPhase = timeSinceStart % phaseDuration;
     const secsIntoPhase = Math.floor(timeIntoPhase / 1000);
     const secRemaining = phaseDuration / 1000 - secsIntoPhase;
 
-    // console.group("secRemaining Logs");
-    // console.log("imgObj:", currentImageObj);
-    // console.log("timeSinceStart:", timeSinceStart);
-    // console.log("timeIntoPhase:", timeIntoPhase);
-    // console.log("secsIntoPhase:", secsIntoPhase);
-    // console.log("secRemaining:", secRemaining);
-    // console.groupEnd();
-
     return secRemaining;
   }
-
-  // useEffect(() => {
-  //   setSecondsPast(`${dateTime}`.slice(-5, -3));
-  // }, [dateTime]);
-
-  // const getSecondsPast = `${dateTime}`.slice(-5, -3);
-  // const minutes = `${Math.floor(dateTime / 60)}`;
-  // const getMinutes = `0${minutes % 60}`.slice(-2);
-  // const getHours = `0${Math.floor(dateTime / 3600)}`.slice(-2);
 
   return (
     <div className="timerContainer grid-item2">

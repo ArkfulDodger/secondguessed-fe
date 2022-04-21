@@ -27,7 +27,7 @@ function Username({ currentUserObj, setCurrentUserObj }) {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log("PATCH data: ", data);
+        // console.log("PATCH data: ", data);
         setCurrentUserObj(data);
       })
       .catch((error) => console.log(error.message));
