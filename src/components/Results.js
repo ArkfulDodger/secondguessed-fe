@@ -50,10 +50,10 @@ function Results({ currentUserObj, currentImageObj, currentGuessObj }) {
       // </li>
 
       <tr key={i}>
-        <td>
+        <td className="resultsTableRow">
           {word.text} - {word.guessCount}
         </td>
-        <td>
+        <td className="resultsTableRow">
           {currentGuessObj
             ? word.id === currentGuessObj.word_id && yourWord
             : ""}
@@ -67,8 +67,8 @@ function Results({ currentUserObj, currentImageObj, currentGuessObj }) {
       <h2 className="winLossText">{winLossText}</h2>
       {/* <ol className="resultsList">{displayList}</ol> */}
 
-      <table>
-        <tbody id="resultsTable">
+      <table className="resultsTable">
+        <tbody>
           <tr>
             <th className="column1">all words:</th>
             <th className="column2">your word:</th>

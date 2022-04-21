@@ -41,7 +41,9 @@ function Username({ currentUserObj, setCurrentUserObj }) {
 
   return (
     <div className="usernameContainer grid-item11">
-      <span>Current User: {currentUserObj.name}</span>
+      <span className="currentUser">
+        Current User: <b>{currentUserObj.name}</b>{" "}
+      </span>
 
       {usernameSubmitted === false ? (
         <form onSubmit={(e) => handleSubmit(e)}>

@@ -6,9 +6,10 @@
 }
 
 @font-face {
-  font-family: "Test";
-  /* src: local("Test"), url(./fonts/Edition-BxnV.ttf) format("truetype"); */
-  src: local("Test)"), url(./fonts/LandasansMedium-ALJ6m.otf) format("opentype");
+  font-family: "Custom";
+  /* src: local("Custom"), url(./fonts/Edition-BxnV.ttf) format("truetype"); */
+  src: local("Custom)"),
+    url(./fonts/LandasansMedium-ALJ6m.otf) format("opentype");
 }
 
 /* GENERAL --------------------------------------------------------- */
@@ -19,11 +20,15 @@
 
 body {
   margin: 0;
-  font-family: Test, "Helvetica", sans-serif;
+  font-family: Custom, "Helvetica", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background: gray;
-  color: peachpuff;
+  background: url("./images/6180512.jpg");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  color: black;
   font-weight: 100;
 }
 
@@ -31,7 +36,7 @@ input {
   border-radius: 10px;
   background-color: peachpuff;
   color: #333;
-  font-family: Test, "Helvetica", sans-serif;
+  font-family: Custom, "Helvetica", sans-serif;
   font-size: 18px;
   padding: 10px;
   width: 150px;
@@ -49,21 +54,51 @@ button {
   padding: 10px;
   border-radius: 10px;
   width: 100px;
-  background: rgb(249, 193, 144);
+  background: rgb(5, 2, 0);
+  color: peachpuff;
   border: 1px solid #333;
   box-shadow: 0 0 1px #333;
-  font-family: Test, "Helvetica", sans-serif;
+  font-family: Custom, "Helvetica", sans-serif;
   font-size: 20px;
 }
 
 button:hover {
-  background: rgb(207, 127, 127);
+  background: rgb(144, 118, 165);
+}
+
+.headerContainer,
+.footer {
+  background-color: rgba(22, 20, 27, 0.659);
+  color: rgb(241, 203, 171);
+}
+
+/* Outer containers ------------------- */
+.timerContainer,
+.imageContainer,
+.instructionsContainer,
+.wordContainer,
+.allWordsListContainer,
+.resultsContainer {
+  border: 1px solid rgb(26, 25, 27);
+  border-radius: 25px;
+  box-shadow: 0 0 10px rgb(37, 1, 37), 0 0 3px rgb(247, 243, 247);
+  margin: 10px;
+  background: rgb(213, 177, 147);
+}
+
+/* Inner Containers ------------------- */
+.countdownContainer,
+.instructions,
+.resultsTable,
+.resultsTableRow {
+  background: peachpuff;
+  padding: 20px 0;
+  width: 80%;
+  border-radius: 15px;
 }
 
 /* GRID ------------------------------------------------------------ */
-.grid-item1 {
-  grid-area: header;
-}
+
 .grid-item2 {
   grid-area: timer;
 }
@@ -73,26 +108,15 @@ button:hover {
 .grid-item4 {
   grid-area: instructions;
 }
-/* .grid-item5 {
-  grid-area: word;
-}
-.grid-item6 {
-  grid-area: allWordsList;
-}
-.grid-item7 {
-  grid-area: results;
-} */
 .grid-item8 {
   grid-area: footer;
 }
-.temp-grid-item {
+/* .temp-grid-item {
   grid-area: phaseButton;
-}
-
+} */
 .grid-item10 {
   grid-area: renderedContent;
 }
-
 .grid-item11 {
   grid-area: username;
 }
@@ -105,40 +129,68 @@ button:hover {
 }
 
 .contentWrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  /* border: 3px solid blue; */
+}
+
+.gridContainer {
+  /* border: 3px solid red; */
+  max-height: 100vh;
   display: grid;
   grid-template-columns: 45% 10% 45%;
   grid-template-rows: auto;
   grid-template-areas:
-    "header header header"
-    "phaseButton . username"
     "timer . instructions"
     "image image renderedContent"
     "image image renderedContent"
     "image image renderedContent"
     "footer footer footer";
   padding-bottom: 3rem;
-}
-
-.timerContainer,
-.imageContainer,
-.instructions,
-.wordContainer,
-.allWordsListContainer,
-.resultsContainer {
-  border: 1px solid peachpuff;
-  border-radius: 25px;
-  margin: 10px;
+  margin: 0;
 }
 
 /* HEADER --------------------------------------------------------- */
+.head-grid-item1 {
+  grid-area: title;
+}
+.head-grid-item2 {
+  grid-area: username;
+}
+.head-grid-item3 {
+  grid-area: button;
+}
+
 .headerContainer {
-  margin: 30px;
+  width: 100%;
+  margin-bottom: 30px;
+  padding: 30px;
   text-transform: uppercase;
   font-family: Header;
-  font-size: 50px;
   text-align: center;
   font-weight: 100;
-  /* letter-spacing: 0.01em; */
+  display: grid;
+  grid-template-columns: 20% 60% 20%;
+  grid-template-areas: "button title username";
+}
+
+.headerContainer h1 {
+  font-size: 100px;
+}
+
+.headerContainer h2 {
+  font-size: 30px;
+}
+
+.currentUser {
+  font-family: Custom;
+  border: 1px solid rgb(26, 25, 27);
+  border-radius: 25px;
+  box-shadow: 0 0 10px rgb(37, 1, 37), 0 0 3px rgb(247, 243, 247);
+  margin: 10px;
+  background: rgb(45, 45, 45);
 }
 
 .phaseBtnContainer {
@@ -153,7 +205,12 @@ button:hover {
   flex-direction: column;
   justify-content: flex-end;
   align-items: flex-end;
-  padding: 30px;
+  /* padding: 30px; */
+}
+
+.currentUser {
+  border-radius: 15px;
+  padding: 10px 20px;
 }
 
 .usernameContainer button {
@@ -162,7 +219,7 @@ button:hover {
 
 /* TIMER --------------------------------------------------------- */
 .timerContainer {
-  padding: 40px 60px;
+  padding: 40px 0px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -194,8 +251,7 @@ button:hover {
 }
 
 /* INSTRUCTIONS --------------------------------------------------------- */
-.instructions {
-  padding: 0px 20px;
+.instructionsContainer {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -257,6 +313,7 @@ button:hover {
 .resultsTable {
   table-layout: auto;
   width: 100%;
+  padding: 10px;
 }
 
 .column1 {
@@ -271,9 +328,7 @@ button:hover {
 
 /* FOOTER --------------------------------------------------------- */
 .footer {
-  background-color: rgba(51, 51, 51, 0.659);
   font-size: 14px;
-  color: #ffdab9;
   text-align: center;
   position: static;
   bottom: 0;
