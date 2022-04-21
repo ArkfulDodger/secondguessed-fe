@@ -23,8 +23,10 @@ function Results({ currentUserObj, currentImageObj, currentGuessObj }) {
           .sort((a, b) => (b.guessCount > a.guessCount ? 1 : -1));
         const winningIds = winningWords.map((word) => word.id);
 
-        console.log(finalWords);
-        console.log(winningIds);
+        console.group("RESULTS");
+        console.log("Winning Words:", winningIds);
+        console.log("Word Tallies:", finalWords);
+        console.groupEnd();
 
         setFinalWordsList(finalWords);
         setWinningWordsIds(winningIds);

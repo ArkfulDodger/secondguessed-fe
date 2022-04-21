@@ -83,21 +83,26 @@ function App() {
     const elapsedTime = Date.now() - imgObj.start_time;
     const phaseInt = Math.floor(elapsedTime / phaseDuration);
 
+    console.group("Set Initial Phase:");
     switch (phaseInt) {
       case 0:
         setPhase("submit");
+        console.log("submit");
         break;
       case 1:
         setPhase("vote");
+        console.log("vote");
         break;
       case 2:
         setPhase("results");
+        console.log("results");
         break;
 
       default:
         alert("could not set phase for image...");
         break;
     }
+    console.groupEnd();
   }
 
   // retrieve user from db based on ID in local storage
@@ -151,24 +156,26 @@ function App() {
   }
 
   function progressPhase() {
+    console.group("New Phase");
     switch (phase) {
       case "submit":
         setPhase("vote");
-        console.log("changed phase to vote");
+        console.log("vote");
         break;
       case "vote":
         setPhase("results");
-        console.log("changed phase to results");
+        console.log("results");
         break;
       case "results":
         setPhase("submit");
-        console.log("changed phase to submit");
+        console.log("submit");
         setupNextImage().then((newImg) => startNewRound(newImg));
         break;
       default:
         console.error("invalid phase name, fix that shit");
         break;
     }
+    console.groupEnd();
   }
 
   function setupNextImage() {

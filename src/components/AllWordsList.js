@@ -25,7 +25,9 @@ function AllWordsList({
     )
       .then((res) => res.json())
       .then((returnedGuess) => {
-        console.log(returnedGuess);
+        console.log(
+          (returnedGuess && "current guess retrieved") || "no guess in db"
+        );
         setCurrentGuessObj(returnedGuess);
       })
       .catch((error) => console.log(error.message));
