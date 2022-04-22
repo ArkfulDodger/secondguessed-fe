@@ -122,15 +122,19 @@ button:hover {
 .grid-item4 {
   grid-area: instructions;
 }
-.grid-item8 {
+/* .grid-item8 {
   grid-area: footer;
-}
+} */
 .grid-item10 {
   grid-area: renderedContent;
 }
 .grid-item12 {
   grid-area: phaseContents;
 }
+/* .grid-item13 {
+  grid-area: qr;
+  justify-self: center;
+} */
 
 .pageContainer {
   font-size: 28px;
@@ -152,8 +156,7 @@ button:hover {
   grid-template-rows: auto;
   grid-template-areas:
     "image phaseContents"
-    "image phaseContents"
-    "footer footer";
+    "image phaseContents";
   justify-items: center;
   padding-bottom: 10rem;
   margin: 0;

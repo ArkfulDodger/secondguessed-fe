@@ -4,6 +4,7 @@ import Image from "./components/Image";
 import Footer from "./components/Footer";
 import { v4 as uuid } from "uuid";
 import PhaseContents from "./components/PhaseContents";
+import QR from "./components/QR";
 
 const phaseDuration = 20 * 1000;
 const phaseCount = 3;
@@ -263,7 +264,9 @@ function App() {
             URL={URL}
           />
         </div>
+        <QR />
       </div>
+
       <Footer />
     </div>
   );
