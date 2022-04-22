@@ -55,7 +55,7 @@ function Results({
 
   if (currentGuessObj) {
     yourWord = winningWordsIds.includes(currentGuessObj.word_id) ? (
-      <FaStar />
+      "⭐"
     ) : (
       <FiChevronsLeft />
     );
