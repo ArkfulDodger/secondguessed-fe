@@ -25,6 +25,11 @@
   padding: 0;
 }
 
+html,
+body {
+  overflow-x: hidden;
+}
+
 body {
   margin: 0;
   font-family: Custom, "Helvetica", sans-serif;
@@ -57,12 +62,13 @@ input::placeholder {
   color: rgb(86, 79, 79);
 }
 
-button {
+button,
+.submitUsernameBtn {
   padding: 10px;
   border-radius: 10px;
   width: 100px;
   background: #333;
-  color: peachpuff;
+  color: var(--secondary);
   border: 1px solid #333;
   box-shadow: 0 0 2px var(--secondary);
   font-family: Custom, "Helvetica", sans-serif;
@@ -86,8 +92,11 @@ button:hover {
   border: 1px solid rgb(132, 98, 165);
   border-radius: 25px;
   box-shadow: 0 0 4px var(--secondary), 0 0 5px var(--secondary);
-  /* margin: 10px; */
   background: var(--main);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 /* Inner Containers ------------------- */
@@ -95,7 +104,8 @@ button:hover {
 .instructions,
 .resultsTable,
 .resultsTableRow,
-.submittedWord {
+.submittedWord,
+.allWordsListContainer {
   background: var(--secondary);
   padding: 20px 20px;
   border: 1px solid #333;
@@ -134,13 +144,11 @@ button:hover {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  /* width: 100%; */
-  /* border: 3px solid blue; */
 }
 
 .gridContainer {
   display: grid;
-  grid-template-columns: 60% 30%;
+  grid-template-columns: 60% 40%;
   grid-template-rows: auto;
   grid-template-areas:
     "image phaseContents"
@@ -217,10 +225,6 @@ button:hover {
 
 .timerContainer {
   padding: 20px 20px;
-  display: flex;
-  /* flex-direction: column; */
-  justify-content: center;
-  align-items: center;
   width: 60%;
   /* border: 1px solid green; */
 }
@@ -239,8 +243,15 @@ button:hover {
   padding: 10px 20px;
 }
 
-.usernameContainer button {
+.updateBtn {
   font-size: 14px;
+  width: 30%;
+}
+
+.submitUsernameBtn {
+  margin: 10px;
+  font-size: 14px;
+  width: 30%;
 }
 
 /* COUNTDOWN ------------------------------------------------------ */
@@ -255,10 +266,6 @@ button:hover {
   padding: 20px 20px;
   width: 100%;
   max-width: 700px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
 }
 
 .randomImage {
@@ -268,8 +275,8 @@ button:hover {
 
 /* PHASE CONTENTS CONTAINER -------------------------------------------- */
 .phaseContentsContainer {
-  width: 100%;
-  /* max-width: 400px; */
+  width: 80%;
+  max-width: 500px;
 }
 
 /* INSTRUCTIONS --------------------------------------------------------- */
@@ -285,7 +292,6 @@ button:hover {
 
 /* WORD --------------------------------------------------------- */
 .wordContainer {
-  /* padding: 40px 80px; */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -293,7 +299,6 @@ button:hover {
 
 .formContainer {
   display: flex;
-  /* flex-direction: column; */
   align-items: center;
   justify-content: center;
   width: 100%;
@@ -337,7 +342,11 @@ button:hover {
 
 /* ALL WORDS LIST --------------------------------------------------------- */
 .allWordsListContainer {
-  padding: 80px 140px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  /* border: 2px solid green; */
 }
 
 .allWordsListContainer span {
@@ -356,6 +365,11 @@ button:hover {
 /* RESULTS --------------------------------------------------------- */
 .resultsContainer {
   padding: 40px 10px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 .winLossText {
@@ -365,17 +379,12 @@ button:hover {
   margin-bottom: 15px;
 }
 
-/* .resultsList {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-} */
-
 .resultsTable {
   table-layout: auto;
-  width: 100%;
+  width: 90%;
   padding: 10px;
+  border: none;
+  /* border-collapse: collapse; */
 }
 
 .column1 {
@@ -425,6 +434,13 @@ button:hover {
 }
 
 /* MEDIA QUERIES ------------------------------------------- */
+
+@media only screen and (min-width: 1400px) {
+  .grid-item12 {
+    justify-self: left;
+  }
+}
+
 @media only screen and (max-width: 1550px) {
   /* body {
     color: yellowgreen;
@@ -437,6 +453,10 @@ button:hover {
   .phaseContentsContainer {
     width: 80%;
   }
+
+  .gridContainer {
+    padding-bottom: 10rem;
+  }
 }
 
 @media only screen and (max-width: 1400px) {
@@ -444,30 +464,60 @@ button:hover {
     color: blueviolet;
   } */
 
-  /* .gridContainer {
-    display: grid;
-    grid-template-columns: 5% 55% 35% 5%;
-    grid-template-rows: auto;
-    grid-template-areas:
-      ". image phaseContents ."
-      ". image phaseContents ."
-      "footer footer footer footer";
-    padding-bottom: 10rem;
-    margin: 0;
-    width: 100%;
-  } */
-
-  .imageContainer {
-    /* width: 90%; */
+  .gridContainer {
+    padding-bottom: 12rem;
   }
 
-  .phaseContentsContainer {
-    /* width: 80%; */
+  .wordInput {
+    width: 60%;
+    font-size: 24px;
+    padding: 20px 30px;
+    border-radius: 20px;
+  }
+
+  .submitBtn {
+    margin: 5px;
+  }
+}
+
+@media only screen and (max-width: 1400px) {
+  .gridContainer {
+    padding-bottom: 10rem;
+  }
+}
+
+@media only screen and (max-width: 1300px) {
+  .gridContainer {
+    padding-bottom: 11rem;
+  }
+}
+
+@media only screen and (max-width: 1200px) {
+  .gridContainer {
+    padding-bottom: 14rem;
+  }
+}
+
+@media only screen and (max-width: 1000px) {
+  .gridContainer {
+    padding-bottom: 15rem;
+  }
+}
+
+@media only screen and (max-width: 900px) {
+  .gridContainer {
+    padding-bottom: 16rem;
+  }
+}
+
+@media only screen and (max-width: 800px) {
+  .gridContainer {
+    padding-bottom: 16rem;
   }
 }
 
 /* Mobile media query */
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 700px) {
   /* body {
     color: orange;
   } */
@@ -507,6 +557,11 @@ button:hover {
 
   .imageContainer {
     margin: 20px;
+    width: 80%;
+  }
+
+  .phaseContentsContainer {
+    padding: 0 0 20px 0;
   }
 
   .formContainer {
@@ -523,7 +578,7 @@ button:hover {
     width: 60%;
     /* border: 1px solid red; */
     font-size: 20px;
-    padding: 30px 40px;
+    padding: 20px;
     border-radius: 20px;
   }
 }
