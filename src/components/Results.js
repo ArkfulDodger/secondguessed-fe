@@ -9,7 +9,7 @@ function Results({
   setWinningWordsIds,
 }) {
   const [finalWordsList, setFinalWordsList] = useState([]);
-  const [winningWordsIds, setWinningWordsIds] = useState([]);
+  // const [winningWordsIds, setWinningWordsIds] = useState([]);
   const [winnersText, setWinnersText] = useState("");
 
   useEffect(() => {
