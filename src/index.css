@@ -412,7 +412,7 @@ button:hover {
   align-items: center;
   justify-content: center;
   gap: 10px;
-  /* margin: 60px 0 0 0; */
+  margin-top: 5rem;
   padding: 10px;
 }
 
