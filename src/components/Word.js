@@ -92,6 +92,11 @@ function Word({
       .catch((error) => console.log(error.message));
   }
 
+  function handleEditSubmitClick() {
+    setWordToSubmit(currentSubmission.text);
+    setIsBeingEdited(true);
+  }
+
   // const inputClassName = submittedThisRound === false ? "" : "hidden";
 
   return (
@@ -120,7 +125,7 @@ function Word({
           {/* will this allow new submission to write over previous? */}
           <button
             className="btn editSubmissionBtn"
-            onClick={() => setIsBeingEdited(true)}
+            onClick={handleEditSubmitClick}
           >
             edit submission
           </button>

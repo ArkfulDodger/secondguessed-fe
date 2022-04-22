@@ -40,6 +40,11 @@ function Username({ currentUserObj, setCurrentUserObj, URL }) {
   const inputClassName =
     usernameSubmitted === false ? "userInput" : "userInput hidden";
 
+  function handleUpdateUserClick() {
+    setUsernameInput(currentUserObj.name);
+    setUsernameSubmitted(false);
+  }
+
   return (
     <div className="usernameContainer grid-item11">
       <span className="currentUser">
@@ -64,7 +69,7 @@ function Username({ currentUserObj, setCurrentUserObj, URL }) {
       ) : (
         <button
           className="btn updateUsernameBtn"
-          onClick={() => setUsernameSubmitted(false)}
+          onClick={handleUpdateUserClick}
         >
           update username
         </button>
