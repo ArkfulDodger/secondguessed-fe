@@ -16,10 +16,11 @@ function Results({
     fetch(`${URL}/final-words/${currentImageObj.id}`)
       .then((res) => res.json())
       .then((data) => {
+        console.log("-----results fetch called------");
         const words = JSON.parse(data.words);
         const winningWords = JSON.parse(data.winning_words);
         const winners = JSON.parse(data.winners);
-        // console.log("FINAL RETURN:", words, winningWords);
+        console.log("FINAL RETURN:", words, winningWords, winners);
 
         const finalWords = words
           .map((word) => {
@@ -31,9 +32,10 @@ function Results({
           })
           .sort((a, b) => (b.guessCount > a.guessCount ? 1 : -1));
         const winningIds = winningWords.map((word) => word.id);
-        const winnerNames = (winners = []
-          ? "Nobody won this round!"
-          : winners.map((winner) => winner.name).join(", "));
+        const winnerNames =
+          winners === []
+            ? "Nobody won this round!"
+            : winners.map((winner) => winner.name).join(", ");
 
         console.group("RESULTS");
         console.log("Winning Words:", winningIds);
