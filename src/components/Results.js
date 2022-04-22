@@ -89,9 +89,9 @@ function Results({
       <table className="resultsTable">
         <tbody>
           <tr>
-            <th className="column1">words:</th>
-            <th className="column2">votes:</th>
-            <th className="column3">yours:</th>
+            <th className="column1">words</th>
+            <th className="column2">votes</th>
+            <th className="column3">yours</th>
           </tr>
           {displayList}
         </tbody>
