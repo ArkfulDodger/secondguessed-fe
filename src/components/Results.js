@@ -13,6 +13,7 @@ function Results({
   const [finalWordsList, setFinalWordsList] = useState([]);
   // const [winningWordsIds, setWinningWordsIds] = useState([]);
   const [winnersText, setWinnersText] = useState("");
+  const [winnerPreface, setWinnerPreface] = useState("Winners:");
 
   useEffect(() => {
     fetch(`${URL}/final-words/${currentImageObj.id}`)
@@ -35,7 +36,7 @@ function Results({
           .sort((a, b) => (b.guessCount > a.guessCount ? 1 : -1));
         const winningIds = winningWords.map((word) => word.id);
         const winnerNames = !winners[0]
-          ? "Nobody won this round!"
+          ? "nobody"
           : winners.map((winner) => winner.name).join(", ");
 
         console.group("RESULTS");
@@ -47,6 +48,9 @@ function Results({
         setFinalWordsList(finalWords);
         setWinningWordsIds(winningIds);
         setWinnersText(winnerNames);
+        winners.length == 1
+          ? setWinnerPreface("Winner:")
+          : setWinnerPreface("Winners:");
       })
       .catch((error) => console.log(error.message));
   }, []);
@@ -64,13 +68,9 @@ function Results({
   const displayList = finalWordsList.map((word, i) => {
     return (
       <tr key={i}>
-        <td className="resultsTableRow">
-          {word.text} - {word.guessCount}
-        </td>
-        <td
-          className="resultsTableRow yourGuessCell"
-          style={{ "vertical-align": "baseline" }}
-        >
+        <td className="resultsTableCell">{word.text}</td>
+        <td className="resultsTableCell voteCell">{word.guessCount}</td>
+        <td className="resultsTableCell yourGuessCell">
           {currentGuessObj
             ? word.id === currentGuessObj.word_id && yourWord
             : ""}
@@ -81,13 +81,17 @@ function Results({
 
   return (
     <div className="resultsContainer grid-item10">
-      <span className="winnersTextSpan">{winnersText}</span>
+      <span className="winnersTextSpan">
+        <b>{winnerPreface}</b> {"   "}
+        {winnersText}
+      </span>
 
       <table className="resultsTable">
         <tbody>
           <tr>
-            <th className="column1">all words:</th>
-            <th className="column2">yours:</th>
+            <th className="column1">words:</th>
+            <th className="column2">votes:</th>
+            <th className="column3">yours:</th>
           </tr>
           {displayList}
         </tbody>

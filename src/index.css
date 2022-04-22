@@ -257,6 +257,8 @@ input::placeholder {
 .submitUsernameBtn {
   font-size: 14px;
   width: 30%;
+  padding: 10px;
+  color: var(--main);
 }
 
 /* COUNTDOWN ------------------------------------------------------ */
@@ -418,8 +420,17 @@ input::placeholder {
 }
 
 .column2 {
+  text-align: center;
+  width: 20%;
+}
+
+.voteCell {
+  text-align: center;
+}
+
+.column3 {
   text-align: right;
-  width: 40%;
+  width: 20%;
 }
 
 .yourGuessCell {
@@ -630,5 +641,12 @@ input::placeholder {
 
   .phaseContentsContainer {
     padding: 20px;
+  }
+
+  .submitUsernameBtn {
+    padding: 10px 15px;
+    border-radius: 10px;
+    text-align: center;
+    width: 40%;
   }
 }
