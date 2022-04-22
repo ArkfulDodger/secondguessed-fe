@@ -1,8 +1,14 @@
 import React, { useState, useEffect } from "react";
 
-function Results({ currentUserObj, currentImageObj, currentGuessObj, URL }) {
+function Results({
+  currentUserObj,
+  currentImageObj,
+  currentGuessObj,
+  URL,
+  winningWordsIds,
+  setWinningWordsIds,
+}) {
   const [finalWordsList, setFinalWordsList] = useState([]);
-  const [winningWordsIds, setWinningWordsIds] = useState([]);
 
   useEffect(() => {
     fetch(`${URL}/final-words/${currentImageObj.id}`)
@@ -34,13 +40,13 @@ function Results({ currentUserObj, currentImageObj, currentGuessObj, URL }) {
       .catch((error) => console.log(error.message));
   }, []);
 
-  let winLossText = "";
+  // let winLossText = "";
 
-  if (currentGuessObj) {
-    winLossText = winningWordsIds.includes(currentGuessObj.word_id)
-      ? "You win!"
-      : "You lose!";
-  }
+  // if (currentGuessObj) {
+  //   winLossText = winningWordsIds.includes(currentGuessObj.word_id)
+  //     ? "You win!"
+  //     : "You lose!";
+  // }
 
   const yourWord = "⭐️";
 
@@ -66,14 +72,15 @@ function Results({ currentUserObj, currentImageObj, currentGuessObj, URL }) {
 
   return (
     <div className="resultsContainer grid-item10">
-      <h2 className="winLossText">{winLossText}</h2>
-      {/* <ol className="resultsList">{displayList}</ol> */}
+      {/* <h2 className="winLossText">{winLossText}</h2> */}
+
+      <span className="winnersTextSpan">display winner/s here</span>
 
       <table className="resultsTable">
         <tbody>
           <tr>
             <th className="column1">all words:</th>
-            <th className="column2">your word:</th>
+            <th className="column2">you guessed:</th>
           </tr>
           {displayList}
         </tbody>

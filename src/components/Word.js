@@ -106,7 +106,7 @@ function Word({
               onChange={(e) => setWordToSubmit(e.target.value)}
               placeholder="type here"
             ></input>
-            <input type="submit" value="Submit" className="submitBtn" />
+            <input type="submit" value="Submit" className="btn submitBtn" />
           </form>
         </div>
       ) : (
@@ -118,7 +118,10 @@ function Word({
 
           {/* button to edit submission - brings back form */}
           {/* will this allow new submission to write over previous? */}
-          <button onClick={() => setIsBeingEdited(true)}>
+          <button
+            className="btn editSubmissionBtn"
+            onClick={() => setIsBeingEdited(true)}
+          >
             edit submission
           </button>
         </div>

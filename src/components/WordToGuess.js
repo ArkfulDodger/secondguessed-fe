@@ -82,15 +82,15 @@ function WordToGuess({
 
   const selectedWordStyle = currentGuessObj
     ? word.id === currentGuessObj.word_id
-      ? "selectedWord"
-      : ""
-    : "";
+      ? "btn selectedWordBtn"
+      : "btn unselectedWordBtn"
+    : "btn unselectedWordBtn";
 
   return (
     <>
-      <li className={selectedWordStyle} onClick={handleClick}>
+      <button className={selectedWordStyle} onClick={handleClick}>
         {word.text}
-      </li>
+      </button>
     </>
   );
 }
