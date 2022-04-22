@@ -105,8 +105,6 @@ input::placeholder {
 /* Inner Containers ------------------- */
 .countdownContainer,
 .instructions,
-.resultsTable,
-.resultsTableRow,
 .winnersTextSpan,
 .submittedWord,
 .allWordsListContainer,
@@ -180,7 +178,7 @@ input::placeholder {
   width: 100%;
   margin-bottom: 30px;
   padding: 30px;
-  text-transform: uppercase;
+  /* text-transform: uppercase; */
   font-family: Header;
   text-align: center;
   font-weight: 100;
@@ -198,16 +196,6 @@ input::placeholder {
 .headerContainer h2 {
   font-size: 30px;
   color: var(--secondary);
-}
-
-.currentUser {
-  font-family: Custom;
-  font-size: 20px;
-  border: 1px solid rgb(26, 25, 27);
-  border-radius: 25px;
-  box-shadow: 0 0 2px var(--secondary), 0 0 3px var(--secondary);
-  margin: 10px;
-  background: rgb(45, 45, 45);
 }
 
 .phaseBtnContainer {
@@ -228,7 +216,23 @@ input::placeholder {
   width: 60%;
 }
 
-/* USERNAME INPUT ------------------------------------------------- */
+/* USERNAME  ------------------------------------------------- */
+.currentUser {
+  font-family: Custom;
+  font-size: 18px;
+  border: 1px solid rgb(26, 25, 27);
+  border-radius: 25px;
+  box-shadow: 0 0 2px var(--secondary), 0 0 3px var(--secondary);
+  margin: 10px;
+  background: rgb(45, 45, 45);
+  color: var(--secondary);
+}
+
+.userInput {
+  max-width: 100%;
+  font-size: 18px;
+}
+
 .usernameContainer {
   display: flex;
   flex-direction: column;
@@ -239,13 +243,15 @@ input::placeholder {
 .currentUser {
   border-radius: 15px;
   padding: 10px 20px;
+  font-size: 28px;
 }
 
 .updateUsernameBtn {
-  font-size: 14px;
-  width: 30%;
+  font-size: 18px;
+  /* width: 40%; */
   padding: 5px;
   text-align: center;
+  color: var(--main);
 }
 
 .submitUsernameBtn {
@@ -257,6 +263,10 @@ input::placeholder {
 .countdownContainer {
   color: var(--text);
   font-size: 18px;
+}
+
+.timerText {
+  font-family: Custom;
 }
 
 /* IMAGE --------------------------------------------------------- */
@@ -282,8 +292,7 @@ input::placeholder {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 20px;
-  padding: 20px;
+  padding-bottom: 20px;
 }
 
 .gameEnd {
@@ -347,6 +356,7 @@ input::placeholder {
 .allWordsListContainer span {
   /* font-family: Header; */
   font-weight: bold;
+  font-size: 30px;
 }
 
 .allWordsList {
@@ -357,7 +367,7 @@ input::placeholder {
 .selectedWordBtn {
   font-weight: bold;
   border: 1px solid peachpuff;
-  box-shadow: 0 0 3px peachpuff., 0 0 4px peachpuff;
+  box-shadow: 0 0 3px peachpuff, 0 0 4px peachpuff;
 }
 
 .selectedWordBtn:hover {
@@ -370,7 +380,7 @@ input::placeholder {
 
 /* RESULTS --------------------------------------------------------- */
 .resultsContainer {
-  padding: 40px 10px;
+  /* padding: 10px 10px; */
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -386,26 +396,33 @@ input::placeholder {
 } */
 
 .winnersTextSpan {
+  padding: 8px 10px;
   margin: 10px;
   border: none;
+  font-size: 24px;
 }
 
 .resultsTable {
+  background: var(--secondary);
   table-layout: auto;
-  width: 90%;
+  width: 100%;
   padding: 10px;
-  border: none;
-  /* border-collapse: collapse; */
+  border-radius: 15px;
+  vertical-align: middle;
 }
 
 .column1 {
   text-align: left;
-  width: 70%;
+  width: 60%;
 }
 
 .column2 {
   text-align: right;
-  width: 30%;
+  width: 40%;
+}
+
+.yourGuessCell {
+  text-align: right;
 }
 
 /* QR CODE ------------------------------------------------------- */

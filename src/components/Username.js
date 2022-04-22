@@ -37,12 +37,13 @@ function Username({ currentUserObj, setCurrentUserObj, URL }) {
     setUsernameSubmitted(true);
   }
 
-  const inputClassName = usernameSubmitted === false ? "" : "hidden";
+  const inputClassName =
+    usernameSubmitted === false ? "userInput" : "userInput hidden";
 
   return (
     <div className="usernameContainer grid-item11">
       <span className="currentUser">
-        Current User: <b>{currentUserObj.name}</b>{" "}
+        <b>{currentUserObj.name}</b>
       </span>
 
       {usernameSubmitted === false ? (

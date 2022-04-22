@@ -16,7 +16,7 @@ function Countdown({ secToNextPhase, phase }) {
       <h1>
         {minutes}:{seconds}
       </h1>
-      <h3>{timerText}</h3>
+      <h3 className="timerText">{timerText}</h3>
     </div>
   );
 }

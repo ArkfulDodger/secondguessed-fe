@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from "react";
+import { FaStar } from "react-icons/fa";
+import { FiChevronsLeft } from "react-icons/fi";
 
 function Results({
   currentUserObj,
@@ -32,10 +34,9 @@ function Results({
           })
           .sort((a, b) => (b.guessCount > a.guessCount ? 1 : -1));
         const winningIds = winningWords.map((word) => word.id);
-        const winnerNames =
-          winners === []
-            ? "Nobody won this round!"
-            : winners.map((winner) => winner.name).join(", ");
+        const winnerNames = !winners[0]
+          ? "Nobody won this round!"
+          : winners.map((winner) => winner.name).join(", ");
 
         console.group("RESULTS");
         console.log("Winning Words:", winningIds);
@@ -50,28 +51,26 @@ function Results({
       .catch((error) => console.log(error.message));
   }, []);
 
-  // let winLossText = "";
+  let yourWord = "";
 
-  // if (currentGuessObj) {
-  //   winLossText = winningWordsIds.includes(currentGuessObj.word_id)
-  //     ? "You win!"
-  //     : "You lose!";
-  // }
-
-  const yourWord = "⭐️";
+  if (currentGuessObj) {
+    yourWord = winningWordsIds.includes(currentGuessObj.word_id) ? (
+      <FaStar />
+    ) : (
+      <FiChevronsLeft />
+    );
+  }
 
   const displayList = finalWordsList.map((word, i) => {
     return (
-      // <li key={word.id}>
-      //   {word.text} - {word.guessCount}{" "}
-      //   {currentGuessObj ? word.id === currentGuessObj.word_id && yourWord : ""}
-      // </li>
-
       <tr key={i}>
         <td className="resultsTableRow">
           {word.text} - {word.guessCount}
         </td>
-        <td className="resultsTableRow">
+        <td
+          className="resultsTableRow yourGuessCell"
+          style={{ "vertical-align": "baseline" }}
+        >
           {currentGuessObj
             ? word.id === currentGuessObj.word_id && yourWord
             : ""}
@@ -82,15 +81,13 @@ function Results({
 
   return (
     <div className="resultsContainer grid-item10">
-      {/* <h2 className="winLossText">{winLossText}</h2> */}
-
-      <span className="winnersTextSpan">display winner/s here</span>
+      <span className="winnersTextSpan">{winnersText}</span>
 
       <table className="resultsTable">
         <tbody>
           <tr>
             <th className="column1">all words:</th>
-            <th className="column2">you guessed:</th>
+            <th className="column2">yours:</th>
           </tr>
           {displayList}
         </tbody>
