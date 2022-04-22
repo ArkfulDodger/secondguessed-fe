@@ -62,8 +62,7 @@ input::placeholder {
   color: rgb(86, 79, 79);
 }
 
-button,
-.submitUsernameBtn {
+.btn {
   padding: 10px;
   border-radius: 10px;
   width: 100px;
@@ -73,10 +72,12 @@ button,
   box-shadow: 0 0 2px var(--secondary);
   font-family: Custom, "Helvetica", sans-serif;
   font-size: 20px;
+  text-align: center;
+  margin: 10px;
 }
 
-button:hover {
-  background: #6a3557;
+.btn:hover {
+  background: #341328;
 }
 
 .headerContainer,
@@ -88,7 +89,8 @@ button:hover {
 /* Outer containers ------------------- */
 .phaseContentsContainer,
 .timerContainer,
-.imageContainer {
+.imageContainer,
+.qrContainer {
   border: 1px solid rgb(132, 98, 165);
   border-radius: 25px;
   box-shadow: 0 0 4px var(--secondary), 0 0 5px var(--secondary);
@@ -97,6 +99,7 @@ button:hover {
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  padding: 20px;
 }
 
 /* Inner Containers ------------------- */
@@ -104,14 +107,17 @@ button:hover {
 .instructions,
 .resultsTable,
 .resultsTableRow,
+.winnersTextSpan,
 .submittedWord,
-.allWordsListContainer {
+.allWordsListContainer,
+.qr span {
   background: var(--secondary);
   padding: 20px 20px;
   border: 1px solid #333;
   box-shadow: 0 0 6px var(--secondary);
   width: 80%;
   border-radius: 15px;
+  text-align: center;
 }
 
 /* GRID ------------------------------------------------------------ */
@@ -122,19 +128,12 @@ button:hover {
 .grid-item4 {
   grid-area: instructions;
 }
-/* .grid-item8 {
-  grid-area: footer;
-} */
 .grid-item10 {
   grid-area: renderedContent;
 }
 .grid-item12 {
   grid-area: phaseContents;
 }
-/* .grid-item13 {
-  grid-area: qr;
-  justify-self: center;
-} */
 
 .pageContainer {
   font-size: 28px;
@@ -219,9 +218,7 @@ button:hover {
 
 /* TIMER --------------------------------------------------------- */
 .timerOuterDiv {
-  /* border: 1px solid red; */
   display: flex;
-  /* flex-direction: column; */
   align-items: center;
   justify-content: center;
 }
@@ -229,7 +226,6 @@ button:hover {
 .timerContainer {
   padding: 20px 20px;
   width: 60%;
-  /* border: 1px solid green; */
 }
 
 /* USERNAME INPUT ------------------------------------------------- */
@@ -238,7 +234,6 @@ button:hover {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  /* border: 1px solid green; */
 }
 
 .currentUser {
@@ -246,20 +241,20 @@ button:hover {
   padding: 10px 20px;
 }
 
-.updateBtn {
+.updateUsernameBtn {
   font-size: 14px;
   width: 30%;
+  padding: 5px;
+  text-align: center;
 }
 
 .submitUsernameBtn {
-  margin: 10px;
   font-size: 14px;
   width: 30%;
 }
 
 /* COUNTDOWN ------------------------------------------------------ */
 .countdownContainer {
-  text-align: center;
   color: var(--text);
   font-size: 18px;
 }
@@ -287,10 +282,14 @@ button:hover {
   display: flex;
   justify-content: center;
   align-items: center;
-  text-align: center;
   margin-top: 20px;
   padding: 20px;
-  /* border: 1px solid green; */
+}
+
+.gameEnd {
+  font-family: Header;
+  font-size: 40px;
+  letter-spacing: 1px;
 }
 
 /* WORD --------------------------------------------------------- */
@@ -305,23 +304,18 @@ button:hover {
   align-items: center;
   justify-content: center;
   width: 100%;
-  /* border: 1px solid green; */
+
   margin-top: 60px;
 }
 
 .wordForm {
   width: 80%;
   text-align: center;
-  /* border: 1px solid green; */
-}
-
-.submitBtn {
-  margin: 10px;
 }
 
 .wordInput {
   width: 70%;
-  /* border: 1px solid red; */
+
   font-size: 40px;
   padding: 40px 50px;
   border-radius: 25px;
@@ -336,7 +330,6 @@ button:hover {
 }
 
 .currentSubmissionText {
-  /* text-decoration: underline; */
   text-transform: uppercase;
   font-size: 60px;
   font-family: Header;
@@ -349,11 +342,11 @@ button:hover {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  /* border: 2px solid green; */
 }
 
 .allWordsListContainer span {
-  text-decoration: underline;
+  /* font-family: Header; */
+  font-weight: bold;
 }
 
 .allWordsList {
@@ -361,8 +354,18 @@ button:hover {
   list-style: none;
 }
 
-.selectedWord {
+.selectedWordBtn {
   font-weight: bold;
+  border: 1px solid peachpuff;
+  box-shadow: 0 0 3px peachpuff., 0 0 4px peachpuff;
+}
+
+.selectedWordBtn:hover {
+  background: var(--text);
+}
+
+.unselectedWordBtn:hover {
+  background: var(--text);
 }
 
 /* RESULTS --------------------------------------------------------- */
@@ -375,11 +378,16 @@ button:hover {
   justify-content: center;
 }
 
-.winLossText {
+/* .winLossText {
   font-family: Header;
   letter-spacing: 00.01em;
   text-align: center;
   margin-bottom: 15px;
+} */
+
+.winnersTextSpan {
+  margin: 10px;
+  border: none;
 }
 
 .resultsTable {
@@ -398,6 +406,26 @@ button:hover {
 .column2 {
   text-align: right;
   width: 30%;
+}
+
+/* QR CODE ------------------------------------------------------- */
+.qr {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.qrContainer {
+  background: var(--text);
+  border-radius: 10px;
+}
+
+.qr span {
+  text-align: center;
+  width: 100%;
+  font-size: 22px;
+  margin: 50px;
 }
 
 /* FOOTER --------------------------------------------------------- */

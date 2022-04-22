@@ -54,11 +54,15 @@ function Username({ currentUserObj, setCurrentUserObj, URL }) {
             onChange={(e) => setUsernameInput(e.target.value)}
             placeholder="enter name here"
           ></input>
-          <input type="submit" value="submit" className="submitUsernameBtn" />
+          <input
+            type="submit"
+            value="submit"
+            className="btn submitUsernameBtn"
+          />
         </form>
       ) : (
         <button
-          className="updateBtn"
+          className="btn updateUsernameBtn"
           onClick={() => setUsernameSubmitted(false)}
         >
           update username
