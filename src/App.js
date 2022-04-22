@@ -186,6 +186,7 @@ function App() {
     switch (phase) {
       case "submit":
         setPhase("vote");
+        setWordToSubmit("");
         console.log("vote");
         break;
       case "vote":

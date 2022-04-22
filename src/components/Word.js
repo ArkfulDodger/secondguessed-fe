@@ -55,10 +55,14 @@ function Word({
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log("submitted word to database!");
-        // setSubmittedThisRound(true);
-        setCurrentSubmission(data);
-        setIsBeingEdited(false);
+        if (data === "TAKEN!") {
+          alert("Word already submitted by another user, try another!");
+        } else {
+          console.log("submitted word to database!");
+          // setSubmittedThisRound(true);
+          setCurrentSubmission(data);
+          setIsBeingEdited(false);
+        }
       })
       .catch((error) => console.log(error.message));
   }
@@ -77,9 +81,13 @@ function Word({
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log("updated submitted word in database!");
-        setCurrentSubmission(data);
-        setIsBeingEdited(false);
+        if (data === "TAKEN!") {
+          alert("Word already submitted by another user, try another!");
+        } else {
+          console.log("updated submitted word in database!");
+          setCurrentSubmission(data);
+          setIsBeingEdited(false);
+        }
       })
       .catch((error) => console.log(error.message));
   }
