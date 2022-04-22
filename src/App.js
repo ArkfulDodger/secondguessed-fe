@@ -7,8 +7,8 @@ import PhaseContents from "./components/PhaseContents";
 
 const phaseDuration = 20 * 1000;
 const phaseCount = 3;
-const URL = "https://morning-hollows-37806.herokuapp.com"; // Heroku
-// const URL = "http://localhost:9292"; // Local
+// const URL = "https://morning-hollows-37806.herokuapp.com"; // Heroku
+const URL = "http://localhost:9292"; // Local
 
 function App() {
   const [phase, setPhase] = useState("submit");
