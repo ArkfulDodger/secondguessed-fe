@@ -9,6 +9,8 @@ function Results({
   setWinningWordsIds,
 }) {
   const [finalWordsList, setFinalWordsList] = useState([]);
+  const [winningWordsIds, setWinningWordsIds] = useState([]);
+  const [winnersText, setWinnersText] = useState("");
 
   useEffect(() => {
     fetch(`${URL}/final-words/${currentImageObj.id}`)
@@ -16,6 +18,7 @@ function Results({
       .then((data) => {
         const words = JSON.parse(data.words);
         const winningWords = JSON.parse(data.winning_words);
+        const winners = JSON.parse(data.winners);
         // console.log("FINAL RETURN:", words, winningWords);
 
         const finalWords = words
@@ -28,14 +31,19 @@ function Results({
           })
           .sort((a, b) => (b.guessCount > a.guessCount ? 1 : -1));
         const winningIds = winningWords.map((word) => word.id);
+        const winnerNames = (winners = []
+          ? "Nobody won this round!"
+          : winners.map((winner) => winner.name).join(", "));
 
         console.group("RESULTS");
         console.log("Winning Words:", winningIds);
+        console.log("Winners:", winnerNames);
         console.log("Word Tallies:", finalWords);
         console.groupEnd();
 
         setFinalWordsList(finalWords);
         setWinningWordsIds(winningIds);
+        setWinnersText(winnerNames);
       })
       .catch((error) => console.log(error.message));
   }, []);
