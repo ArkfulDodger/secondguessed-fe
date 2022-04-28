@@ -17,6 +17,7 @@ function PhaseContents({
   URL,
 }) {
   const [winningWordsIds, setWinningWordsIds] = useState([]);
+  const [youWon, setYouWon] = useState(false);
 
   return (
     <div className="phaseContentsContainer grid-item12">
@@ -24,6 +25,8 @@ function PhaseContents({
         phase={phase}
         currentGuessObj={currentGuessObj}
         winningWordsIds={winningWordsIds}
+        youWon={youWon}
+        setYouWon={setYouWon}
       />
       {phase === "submit" && (
         <Word
@@ -54,6 +57,8 @@ function PhaseContents({
           URL={URL}
           winningWordsIds={winningWordsIds}
           setWinningWordsIds={setWinningWordsIds}
+          youWon={youWon}
+          setYouWon={setYouWon}
         />
       )}
     </div>

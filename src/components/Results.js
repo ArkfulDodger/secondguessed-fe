@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import { FaStar } from "react-icons/fa";
 import { FiChevronsLeft } from "react-icons/fi";
 
+import Confetti from "react-confetti";
+
 function Results({
   currentUserObj,
   currentImageObj,
@@ -9,9 +11,10 @@ function Results({
   URL,
   winningWordsIds,
   setWinningWordsIds,
+  youWon,
+  setYouWon,
 }) {
   const [finalWordsList, setFinalWordsList] = useState([]);
-  // const [winningWordsIds, setWinningWordsIds] = useState([]);
   const [winnersText, setWinnersText] = useState("");
 
   useEffect(() => {
@@ -51,15 +54,17 @@ function Results({
       .catch((error) => console.log(error.message));
   }, []);
 
-  let yourWord = "";
+  // useEffect(() => {
+  //   if (!youWon) {
+  //     const timer = setTimeout(() => {
+  //       setYouWon(false);
+  //       console.log("This will run after 1 second!");
+  //     }, 1000);
+  //     return () => clearTimeout(timer);
+  //   }
+  // }, [youWon, setYouWon]);
 
-  if (currentGuessObj) {
-    yourWord = winningWordsIds.includes(currentGuessObj.word_id) ? (
-      "⭐"
-    ) : (
-      <FiChevronsLeft />
-    );
-  }
+  const yourWord = youWon ? "⭐" : <FiChevronsLeft />;
 
   const displayList = finalWordsList.map((word, i) => {
     return (
@@ -69,7 +74,7 @@ function Results({
         </td>
         <td
           className="resultsTableRow yourGuessCell"
-          style={{ "vertical-align": "baseline" }}
+          style={{ verticalAlign: "baseline" }}
         >
           {currentGuessObj
             ? word.id === currentGuessObj.word_id && yourWord
@@ -92,6 +97,17 @@ function Results({
           {displayList}
         </tbody>
       </table>
+
+      {youWon ? (
+        <Confetti
+          width={1000}
+          height={1000}
+          numberOfPieces={500}
+          recycle={false}
+        />
+      ) : (
+        <></>
+      )}
     </div>
   );
 }
