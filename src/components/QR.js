@@ -1,7 +1,7 @@
 import React from "react";
 import QRCode from "react-qr-code";
 
-function QR(props) {
+function QR() {
   return (
     <div className="qr">
       <span>scan below to join the current game:</span>

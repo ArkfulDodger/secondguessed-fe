@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { FaMedal } from "react-icons/fa";
 import Username from "./Username";
 import Timer from "./Timer";
@@ -15,14 +15,6 @@ function Header({
 }) {
   return (
     <div className="headerContainer">
-      {/* <div className="head-grid-item3">
-        <div className="phaseBtnContainer">
-          <button onClick={progressPhase} className="temp-grid-item">
-            click to progress phase
-          </button>
-        </div>
-      </div> */}
-
       {!!currentImageObj.start_time && (
         <Timer
           progressPhase={progressPhase}

@@ -1,4 +1,4 @@
-import react, { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import Header from "./components/Header";
 import Image from "./components/Image";
 import Footer from "./components/Footer";
@@ -13,21 +13,13 @@ const URL = "https://morning-hollows-37806.herokuapp.com"; // Heroku
 
 function App() {
   const [phase, setPhase] = useState("submit");
-  // phases: submit, vote, results
-  // conditional checks which phase & displays correct component
-  // first: manually write code to change phases
-  // next: set up to change on timer
-
   const [currentImageObj, setCurrentImageObj] = useState({});
-
   const [currentUserObj, setCurrentUserObj] = useState({});
 
   // word & allWordsList both need to access this state:
   const [wordToSubmit, setWordToSubmit] = useState("");
 
-  // the user's current guess
   const [currentGuessObj, setCurrentGuessObj] = useState({});
-
   const [currentSubmission, setCurrentSubmission] = useState({});
 
   // get desired first image on app load

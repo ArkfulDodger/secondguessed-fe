@@ -11,7 +11,6 @@ function AllWordsList({
   URL,
 }) {
   const [wordsList, setWordsList] = useState([]);
-  // GET words - eventually filter for only words from current game
 
   useEffect(() => {
     fetch(`${URL}/words/${currentImageObj.id}`)

@@ -9,22 +9,10 @@ function Word({
   setCurrentSubmission,
   URL,
 }) {
-  // state: submitted word this round & stop displaying input
-  // const [submittedThisRound, setSubmittedThisRound] = useState(false);
   const [isBeingEdited, setIsBeingEdited] = useState(false);
 
   function handleSubmit(e) {
     e.preventDefault();
-
-    // validate that input is not empty
-    // if (currentSubmission === "") {
-    //   alert("please enter a word or phrase");
-    // } else {
-    //   const testWordObj = {
-    //     text: wordToSubmit,
-    //     image_id: currentImageObj.id,
-    //     session_id: currentUserObj.session_id,
-    //   };
 
     const wordObj = {
       text: wordToSubmit,
@@ -97,8 +85,6 @@ function Word({
     setIsBeingEdited(true);
   }
 
-  // const inputClassName = submittedThisRound === false ? "" : "hidden";
-
   return (
     <div className="wordContainer grid-item10">
       {!currentSubmission || isBeingEdited ? (
@@ -121,8 +107,6 @@ function Word({
             <b>{currentSubmission.text}</b>
           </span>
 
-          {/* button to edit submission - brings back form */}
-          {/* will this allow new submission to write over previous? */}
           <button
             className="btn editSubmissionBtn"
             onClick={handleEditSubmitClick}

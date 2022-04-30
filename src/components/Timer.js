@@ -50,8 +50,6 @@ function Timer({
   return (
     <div className="timerOuterDiv head-grid-item4">
       <div className="timerContainer">
-        {/* <span>{dateTime}</span> */}
-        {/* <span>{secToNextPhase}</span> */}
         <Countdown
           secToNextPhase={secToNextPhase}
           progressPhase={progressPhase}

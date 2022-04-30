@@ -86,12 +86,18 @@ input::placeholder {
 
 .pageContainer {
   font-size: 28px;
-  /* text-transform: uppercase; */
   position: relative;
   min-height: 100vh;
 }
 
-.contentWrap {
+/* FlexBox containers: column ----------- */
+.usernameContainer,
+.submittedWord,
+.allWordsListContainer,
+.resultsContainer,
+.qr,
+.contentWrap,
+.timerOuterDiv {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -131,16 +137,13 @@ input::placeholder {
 }
 
 /* GRID ------------------------------------------------------------ */
-.grid-item3 {
+.grid-item1 {
   grid-area: image;
 }
-.grid-item4 {
+.grid-item2 {
   grid-area: instructions;
 }
-.grid-item10 {
-  grid-area: renderedContent;
-}
-.grid-item12 {
+.grid-item3 {
   grid-area: phaseContents;
 }
 
@@ -175,7 +178,6 @@ input::placeholder {
   width: 100%;
   margin-bottom: 30px;
   padding: 30px;
-  /* text-transform: uppercase; */
   font-family: Header;
   text-align: center;
   font-weight: 100;
@@ -195,19 +197,7 @@ input::placeholder {
   color: var(--secondary);
 }
 
-/* .phaseBtnContainer {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-} */
-
 /* TIMER --------------------------------------------------------- */
-.timerOuterDiv {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
 .timerContainer {
   padding: 20px 20px;
   width: 60%;
@@ -229,13 +219,6 @@ input::placeholder {
 .userInput {
   max-width: 100%;
   font-size: 18px;
-}
-
-.usernameContainer {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
 }
 
 .currentUser {
@@ -331,10 +314,6 @@ input::placeholder {
 }
 
 .submittedWord {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
   gap: 10px;
 }
 
@@ -346,15 +325,8 @@ input::placeholder {
 }
 
 /* ALL WORDS LIST --------------------------------------------------------- */
-.allWordsListContainer {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
 
 .allWordsListContainer span {
-  /* font-family: Header; */
   font-weight: bold;
   font-size: 30px;
 }
@@ -380,12 +352,7 @@ input::placeholder {
 
 /* RESULTS --------------------------------------------------------- */
 .resultsContainer {
-  /* padding: 10px 10px; */
   width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
 }
 
 .winnersTextSpan {
@@ -429,13 +396,6 @@ input::placeholder {
 }
 
 /* QR CODE ------------------------------------------------------- */
-.qr {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
-
 .qrContainer {
   background: var(--text);
   border-radius: 10px;
@@ -485,17 +445,7 @@ input::placeholder {
 }
 
 /* MEDIA QUERIES ------------------------------------------- */
-@media only screen and (min-width: 1400px) {
-  .grid-item12 {
-    justify-self: left;
-  }
-}
-
 @media only screen and (max-width: 1550px) {
-  /* body {
-    color: yellowgreen;
-  } */
-
   .imageContainer {
     width: 90%;
   }
@@ -510,14 +460,6 @@ input::placeholder {
 }
 
 @media only screen and (max-width: 1400px) {
-  /* body {
-    color: blueviolet;
-  } */
-
-  /* .gridContainer {
-    padding-bottom: 12rem;
-  } */
-
   .wordInput {
     width: 60%;
     font-size: 24px;
@@ -558,18 +500,8 @@ input::placeholder {
   }
 }
 
-/* @media only screen and (max-width: 800px) {
-  .gridContainer {
-    padding-bottom: 16rem;
-  }
-} */
-
 /* Mobile media query */
 @media only screen and (max-width: 700px) {
-  /* body {
-    color: orange;
-  } */
-
   .headerContainer {
     display: grid;
     grid-template-columns: 50% 50%;
@@ -585,13 +517,10 @@ input::placeholder {
   }
 
   .gridContainer {
-    display: grid;
-    grid-template-columns: 100%;
-    grid-template-rows: auto;
-    grid-template-areas:
-      "image"
-      "phaseContents"
-      "footer";
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
   }
 
   .imageContainer {

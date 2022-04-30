@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 
-function Tally({ phase }) {
+function SubmissionTally({ phase }) {
   const tallyNum =
     phase === "submit"
       ? "[num of submissions]"

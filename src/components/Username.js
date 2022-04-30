@@ -46,7 +46,7 @@ function Username({ currentUserObj, setCurrentUserObj, URL }) {
   }
 
   return (
-    <div className="usernameContainer grid-item11">
+    <div className="usernameContainer head-grid-item2">
       <span className="currentUser">
         <b>{currentUserObj.name}</b>
       </span>

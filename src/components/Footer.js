@@ -1,7 +1,7 @@
-import React, { useState } from "react";
+import React from "react";
 import { FaGithub } from "react-icons/fa";
 
-function Footer(props) {
+function Footer() {
   return (
     <div className="footer grid-item8">
       <p>

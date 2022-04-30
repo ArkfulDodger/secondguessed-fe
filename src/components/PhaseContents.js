@@ -20,7 +20,7 @@ function PhaseContents({
   const [youWon, setYouWon] = useState(false);
 
   return (
-    <div className="phaseContentsContainer grid-item12">
+    <div className="phaseContentsContainer grid-item3">
       <Instructions
         phase={phase}
         currentGuessObj={currentGuessObj}

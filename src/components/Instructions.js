@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 
 function Instructions({
   currentGuessObj,
@@ -21,7 +21,7 @@ function Instructions({
   let textStyle = phase === "results" ? "instructions gameEnd" : "instructions";
 
   return (
-    <div className="instructionsContainer grid-item4">
+    <div className="instructionsContainer grid-item2">
       {phase === "submit" ? (
         <span className={textStyle}>
           Write a word or phrase that describes the image
