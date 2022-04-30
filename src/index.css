@@ -2,12 +2,10 @@
 @font-face {
   font-family: "Header";
   src: local("Header"), url(./fonts/NaughtyMonster-axyo9.ttf) format("truetype");
-  /* src: local("Header"), url(./fonts/DearRaina-JRrRE.otf) format("opentype"); */
 }
 
 @font-face {
   font-family: "Custom";
-  /* src: local("Custom"), url(./fonts/Edition-BxnV.ttf) format("truetype"); */
   src: local("Custom)"),
     url(./fonts/LandasansMedium-ALJ6m.otf) format("opentype");
 }
@@ -46,7 +44,7 @@ body {
 
 input {
   border-radius: 10px;
-  background-color: var(--secondary);
+  background: var(--secondary);
   color: var(--text);
   font-family: Custom, "Helvetica", sans-serif;
   font-size: 22px;
@@ -86,6 +84,20 @@ input::placeholder {
   color: var(--main);
 }
 
+.pageContainer {
+  font-size: 28px;
+  /* text-transform: uppercase; */
+  position: relative;
+  min-height: 100vh;
+}
+
+.contentWrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
 /* Outer containers ------------------- */
 .phaseContentsContainer,
 .timerContainer,
@@ -119,7 +131,6 @@ input::placeholder {
 }
 
 /* GRID ------------------------------------------------------------ */
-
 .grid-item3 {
   grid-area: image;
 }
@@ -131,20 +142,6 @@ input::placeholder {
 }
 .grid-item12 {
   grid-area: phaseContents;
-}
-
-.pageContainer {
-  font-size: 28px;
-  /* text-transform: uppercase; */
-  position: relative;
-  min-height: 100vh;
-}
-
-.contentWrap {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
 }
 
 .gridContainer {
@@ -198,11 +195,11 @@ input::placeholder {
   color: var(--secondary);
 }
 
-.phaseBtnContainer {
+/* .phaseBtnContainer {
   display: flex;
   justify-content: center;
   align-items: center;
-}
+} */
 
 /* TIMER --------------------------------------------------------- */
 .timerOuterDiv {
@@ -226,6 +223,7 @@ input::placeholder {
   margin: 10px;
   background: rgb(45, 45, 45);
   color: var(--secondary);
+  text-transform: uppercase;
 }
 
 .userInput {
@@ -390,13 +388,6 @@ input::placeholder {
   justify-content: center;
 }
 
-/* .winLossText {
-  font-family: Header;
-  letter-spacing: 00.01em;
-  text-align: center;
-  margin-bottom: 15px;
-} */
-
 .winnersTextSpan {
   padding: 8px 10px;
   margin: 10px;
@@ -473,11 +464,11 @@ input::placeholder {
   padding: 10px;
 }
 
-.footer i {
+.footer .icon {
   transition: 2s ease;
 }
 
-.footer i:hover {
+.footer .icon:hover {
   transform: rotate(360deg);
 }
 
@@ -494,7 +485,6 @@ input::placeholder {
 }
 
 /* MEDIA QUERIES ------------------------------------------- */
-
 @media only screen and (min-width: 1400px) {
   .grid-item12 {
     justify-self: left;
@@ -524,9 +514,9 @@ input::placeholder {
     color: blueviolet;
   } */
 
-  .gridContainer {
+  /* .gridContainer {
     padding-bottom: 12rem;
-  }
+  } */
 
   .wordInput {
     width: 60%;
@@ -538,9 +528,7 @@ input::placeholder {
   .submitBtn {
     margin: 5px;
   }
-}
 
-@media only screen and (max-width: 1400px) {
   .gridContainer {
     padding-bottom: 10rem;
   }
@@ -570,11 +558,11 @@ input::placeholder {
   }
 }
 
-@media only screen and (max-width: 800px) {
+/* @media only screen and (max-width: 800px) {
   .gridContainer {
     padding-bottom: 16rem;
   }
-}
+} */
 
 /* Mobile media query */
 @media only screen and (max-width: 700px) {

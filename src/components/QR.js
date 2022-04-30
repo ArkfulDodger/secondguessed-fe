@@ -1,10 +1,9 @@
 import React from "react";
-import ReactDOM from "react-dom";
 import QRCode from "react-qr-code";
 
 function QR(props) {
   return (
-    <div className="qr grid-item13">
+    <div className="qr">
       <span>scan below to join the current game:</span>
 
       <div className="qrContainer">
